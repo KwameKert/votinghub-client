@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     MatToolbarModule,
     MatIconModule,
     MatDividerModule,
@@ -38,6 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatListModule,
     MatSidenavModule,  
+    ToastrModule.forRoot(), 
   
     
   ],
