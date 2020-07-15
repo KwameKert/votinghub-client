@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "propertymanagement-client": {
+    "votinghub-client": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/propertymanagement-client",
+            "outputPath": "dist/votinghub-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "propertymanagement-client:build"
+            "browserTarget": "votinghub-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "propertymanagement-client:build:production"
+              "browserTarget": "votinghub-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "propertymanagement-client:build"
+            "browserTarget": "votinghub-client:build"
           }
         },
         "test": {
@@ -116,18 +116,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "propertymanagement-client:serve"
+            "devServerTarget": "votinghub-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "propertymanagement-client:serve:production"
+              "devServerTarget": "votinghub-client:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "propertymanagement-client",
+  "defaultProject": "votinghub-client",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"
