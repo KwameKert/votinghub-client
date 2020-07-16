@@ -5,6 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import {UserModule} from '../user/user.module';
 import {ElectionModule} from '../election/election.module';
 import {CategoryModule} from '../category/category.module';
+import {PositionModule} from '../position/position.module';
+
 
 @NgModule({
   declarations: [],
@@ -14,7 +16,8 @@ import {CategoryModule} from '../category/category.module';
     SharedModule,
     UserModule, 
     ElectionModule,
-    CategoryModule
+    CategoryModule,
+    PositionModule
   ],
   providers: [
     DatePipe 

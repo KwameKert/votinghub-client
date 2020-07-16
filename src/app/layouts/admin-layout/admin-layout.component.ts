@@ -13,7 +13,7 @@ export class AdminLayoutComponent implements OnInit {
     {name: 'dashboard',url: '/admin/dashboard', icon: 'home'},
     {name: 'Elections', url: 'election/list',  icon: 'how_to_vote'},
     {name: 'Categories', url: 'category/list', icon: 'extension'},
-    {name: 'Positions', url: '/admin/property_location', icon: 'stars'},
+    {name: 'Positions', url: 'position/list', icon: 'stars'},
     {name: 'Candidates', url: '/admin/list_invoices', icon: 'contacts'},
     {name: 'Users', url: 'user/list', icon: 'supervised_user_circle'},
   ]

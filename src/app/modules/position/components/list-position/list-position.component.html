@@ -1,18 +1,18 @@
 <mat-card class="mat-elevation-z8">
 
     <mat-card-header>
-        <mat-card-title>All Categories</mat-card-title>
+        <mat-card-title>All Positions</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
 
-      <button mat-raised-button color="primary" class="float-right mb-1" (click)="addCategory()" *ngIf="!isAddCategory"> <mat-icon>add</mat-icon> New Category</button>
+      <button mat-raised-button color="primary" class="float-right mb-1" (click)="addPosition()" *ngIf="!isAddPosition"> <mat-icon>add</mat-icon> New Position</button>
 
-      <button #listCategorys mat-raised-button color="accent" class="float-right mb-1" (click)="listCategory()" *ngIf="isAddCategory" > <mat-icon>toc</mat-icon> List Category</button>
+      <button #listPositions mat-raised-button color="accent" class="float-right mb-1" (click)="listPosition()" *ngIf="isAddPosition" > <mat-icon>toc</mat-icon> List Position</button>
 
       <div class="row" style="width:100%" >
 
-        <div [ngClass]="listCategoryColumn" >
+        <div [ngClass]="listPositionColumn" >
           <div *ngIf="isLoading; else elseBlock" >
             <ngx-skeleton-loader
             count="5"
@@ -38,9 +38,15 @@
             
             
               <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Position Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="category">
                 <th mat-header-cell *matHeaderCellDef> Category Name </th>
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
               </ng-container>
+              
               <ng-container matColumnDef="createdAt">
                 <th mat-header-cell *matHeaderCellDef> Created At  </th>
                 <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'mediumDate'}} </td>
@@ -56,18 +62,18 @@
                     <mat-icon>more_vert</mat-icon>
                   </button>
                   <mat-menu #belowMenu="matMenu" yPosition="below">
-                    <button mat-menu-item (click)="viewCategory(element)">
+                    <button mat-menu-item (click)="viewPosition(element)">
                       <mat-icon>visibility</mat-icon>
-                      <span>View Category </span>
+                      <span>View Position </span>
                     </button>
 
-                    <button mat-menu-item (click)="editCategory(element.id)">
+                    <button mat-menu-item (click)="editPosition(element.id)">
                       <mat-icon>edit</mat-icon>
-                      <span>Edit Category </span>
+                      <span>Edit Position </span>
                     </button>
-                    <button mat-menu-item (click)="deleteCategory(element.id)">
+                    <button mat-menu-item (click)="deletePosition(element.id)">
                       <mat-icon>clear</mat-icon>
-                      <span>Delete Category</span>
+                      <span>Delete Position</span>
                     </button>
                   </mat-menu>
                 </td>
@@ -81,12 +87,12 @@
           <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>
 
-        <div [ngClass]="addCategoryColumn">
-          <app-add-category (newCategory)="newCategoryCreated($event)"  ></app-add-category>
+        <div [ngClass]="addPositionColumn">
+          <app-add-position (newPosition)="newPositionCreated($event)"  ></app-add-position>
         </div>
 
-        <div [ngClass]="editCategoryColumn">
-          <app-edit-category (updatedCategory)="newCategoryCreated($event)" [categoryId]="categoryId"></app-edit-category>
+        <div [ngClass]="editPositionColumn">
+          <app-edit-position (updatedPosition)="newPositionCreated($event)" [positionId]="positionId"></app-edit-position>
         </div>
       </div>
   
