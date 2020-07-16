@@ -19,9 +19,7 @@
                         <input matInput placeholder="Test User"  formControlName="username" >
                         <mat-error *ngIf="userForm.get('username').invalid"> Invalid input </mat-error>
                       </mat-form-field>
-
-                     
-                  
+                                       
                     <mat-form-field appearance="outline" style="width:500px"  >
                         <mat-label>Password</mat-label>
                         <input matInput placeholder="Test User"  formControlName="password" >
@@ -33,8 +31,7 @@
                         <mat-select  formControlName="role">
                           <mat-option>None</mat-option>
                           <mat-option value="ADMIN" >Admin</mat-option>
-                          <mat-option value="COLLECTOR" selected>Collector</mat-option>
-                          <mat-option value="AUDITOR">Auditor</mat-option>
+                          <mat-option value="AGENT" selected>AGENT</mat-option>
                         </mat-select>
                       </mat-form-field>
 

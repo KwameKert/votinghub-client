@@ -74,11 +74,16 @@
                   <mat-menu #belowMenu="matMenu" yPosition="below">
                     <button mat-menu-item (click)="viewUser(element)">
                       <mat-icon>visibility</mat-icon>
-                      <span>View Owner </span>
+                      <span>View User </span>
+                    </button>
+
+                    <button mat-menu-item (click)="editUser(element)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit User </span>
                     </button>
                     <button mat-menu-item (click)="deleteUser(element.id)">
                       <mat-icon>clear</mat-icon>
-                      <span>Delete Owner</span>
+                      <span>Delete User</span>
                     </button>
                   </mat-menu>
                 </td>
@@ -93,10 +98,11 @@
         </div>
 
         <div [ngClass]="addUserColumn">
-
           <app-add-user (newUser)="newUserCreated($event)"></app-add-user>
+        </div>
 
-           
+        <div [ngClass]="editUserColumn">
+          <app-add-user (updatedUser)="newUserCreated($event)"></app-add-user>
         </div>
       </div>
   

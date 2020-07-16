@@ -26,6 +26,7 @@ export class ListUserComponent implements OnInit {
   displayedColumns: any ;
   listUserColumn: string = 'col-md-12';
   addUserColumn: string = 'd-none'
+  editUserColumn: string = 'd-none'
 
 
 
@@ -95,6 +96,7 @@ export class ListUserComponent implements OnInit {
     this.getCollumnDefinitions();
     this.listUserColumn = 'col-md-12';
     this.addUserColumn = 'd-none';
+    this.editUserColumn = 'd-none';
     this.isAddUser = false;
   }
 

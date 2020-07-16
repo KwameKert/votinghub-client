@@ -35,7 +35,7 @@ export class AddUserComponent implements OnInit {
 
     
 this.ngxService.start()
-    this._crudService.addItem(this.userForm.value, "user").subscribe(data=>{
+    this._crudService.addItem(this.userForm.value, "users").subscribe(data=>{
      this.userForm.reset();
       this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
 
