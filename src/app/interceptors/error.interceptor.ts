@@ -20,15 +20,14 @@ intercept(
                 if(err instanceof HttpErrorResponse) {
                     
                     if(err.status == 403){
-                        console.log(" 403")
-                        // this._toastr.error("Please authenticate", "Oops 🥺", {  timeOut:4000});
-                        // this._router.navigate(['/login']);
+                        this._toastr.error("Please authenticate", "Oops 🥺", {  timeOut:4000});
+                        this._router.navigate(['/login']);
                     }else{
 
                         const error = err.error.message || err.statusText;
                         console.log(error)
-                       // this._toastr.error(error, "Oops 🥺", {  timeOut:4000});
-                      //  return throwError(error); 
+                      // this._toastr.error(error, "Oops 🥺", {  timeOut:4000});
+                       //return throwError(error); 
                     }
                 }
                 return of(err);

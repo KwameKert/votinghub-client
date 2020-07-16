@@ -26,7 +26,7 @@ import { UseExistingWebDriver } from 'protractor/built/driverProviders';
 
             const user = this._authService.userValue;
 
-            if (user.token) {
+            if (user) {
                 request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + user.token) });
             }
             if (!request.headers.has('Content-Type')) {

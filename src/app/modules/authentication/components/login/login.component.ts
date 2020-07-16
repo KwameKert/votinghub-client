@@ -28,6 +28,11 @@ ngOnInit() {
 
 loginUser(){
   this.isLoading  = true;
+  // this._authService.loginUser(this.loginForm.value).subscribe(data=>{
+  //   console.log(data)
+  // }, error=>{
+  //   console.error(error)
+  // })
   this._authService.login(this.loginForm.value).pipe(first())
   .subscribe(
       data => {

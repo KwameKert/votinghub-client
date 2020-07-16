@@ -155,7 +155,11 @@ export class ListUserComponent implements OnInit {
   }
 
   editUser(id){
-    
+    this.slide = true;
+    this.getCollumnDefinitions();
+    this.listUserColumn = 'col-md-6 pt-4';
+    this.editUserColumn = 'col-md-6';
+    this.isEditUser = true;
   }
   
 }
