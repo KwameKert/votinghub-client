@@ -6,7 +6,7 @@
                    
 
                     <li  class="nav-icon">
-                        <a href="" routerLink="/login" style="color:white; text-decoration: none;"><span>AppLogo</span></a>
+                        <a href="" routerLink="/login" style="color:white; text-decoration: none;"><span>Voting Hub</span></a>
                     </li>
                     <li>
                         <button mat-icon-button (click)="toggleSideBar()" >
@@ -37,8 +37,8 @@
                                 <mat-icon>person</mat-icon>
                             </button>
                             <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <mat-icon>exit_to_app</mat-icon> Sign Out
+                            <button mat-menu-item  (click)="logout()">
+                                <mat-icon>exit_to_app</mat-icon> Logout
                             </button>
                             </mat-menu>
                         </li>

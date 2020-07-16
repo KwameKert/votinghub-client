@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {ListUserComponent} from '../user';
 
 const routes: Routes = [
-    {path: 'dashboard', }
+    {path: 'user/list', component: ListUserComponent }
 
 ];
 

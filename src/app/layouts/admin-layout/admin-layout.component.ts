@@ -11,11 +11,11 @@ export class AdminLayoutComponent implements OnInit {
 
   links: Array<object> = [
     {name: 'dashboard',url: '/admin/dashboard', icon: 'home'},
-    {name: 'Owner', url: '/admin/list_owner',  icon: 'supervised_user_circle'},
-    {name: 'Property', url: '/admin/list_property', icon: 'widgets'},
-    {name: 'Location', url: '/admin/property_location', icon: 'pin_drop'},
-    {name: 'Invoice', url: '/admin/list_invoices', icon: 'send'},
-    {name: 'user', url: '/admin/list_user', icon: 'account_box'},
+    {name: 'Elections', url: '/admin/list_owner',  icon: 'how_to_vote'},
+    {name: 'Categories', url: '/admin/list_property', icon: 'extension'},
+    {name: 'Positions', url: '/admin/property_location', icon: 'stars'},
+    {name: 'Candidates', url: '/admin/list_invoices', icon: 'contacts'},
+    {name: 'Users', url: '/admin/user/list', icon: 'supervised_user_circle'},
   ]
     
 

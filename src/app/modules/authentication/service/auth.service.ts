@@ -57,25 +57,11 @@ export class AuthService {
     localStorage.setItem("status", "active" )
   }
 
-  logUserOut(){
-
-    try{
-
-      localStorage.clear()
-      return true;
-    }catch(err){
-      throw err;
-    }
-  }
-
-  // public get isLoggedIn(){
-  //   return this.loggedInStatus;
-  // }
-
-  // public get userRole(){
-  //   return  this.authority;
-  // }
-
-
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+    this.router.navigate(['/login']);
+}
 
 }

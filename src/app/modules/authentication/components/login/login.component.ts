@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 constructor(private _router: Router, private _fb: FormBuilder,private _authService: AuthService, private _toastr: ToastrService) { }
 
 ngOnInit() {
-  this._authService.logUserOut();
   this.loginForm = this._fb.group({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -32,10 +31,9 @@ loginUser(){
   this._authService.login(this.loginForm.value).pipe(first())
   .subscribe(
       data => {
-        let role = data.roles[0].role;
-        switch(role){
+        switch(data.role){
             case "ADMIN":
-              return this._router.navigate(['/admin/dashboard']);
+              return this._router.navigate(['/admin/user/list']);
               break;
             case "COLLECTOR":
                 this.link = '/collector/dashboard';
@@ -49,58 +47,11 @@ loginUser(){
           }
       },
       error => {
-          // this.alertService.error(error);
-          // this.loading = false;
+        this._toastr.info("Invalid credentials. 🥺","",{
+              timeOut:2000
+            })
       });
-  // this._authService.loginUser(this.loginForm.value).subscribe(async data=>{
 
-  //   let authData = {
-  //       userId: data.user.id,
-  //       token: data.token,
-  //       username: data.user.username,
-  //       role: data.user.roles[0].role
-  //   }
-    
-  //  await  this._authService.setUserDetails(authData);
-  //   let role = data.user.roles[0].role
-
-   
-  
-    
-  //   switch(role){
-  //     case "ADMIN":
-  //         this.link = '/admin/dashboard';
-  //       break;
-  //     case "COLLECTOR":
-  //         this.link = '/collector/dashboard';
-  //         break;
-  //     case "AUDITOR":
-  //         this.link = '/auditor/dashboard';    
-  //       break;
-  //     case "OWNER":
-  //         this.link = '/owner/dashboard';
-  //       break;
-        
-
-  //   }
-
-   
-  //   this._toastr.success("Welcome to Prop Management 🙂","",{
-  //     timeOut:2000
-  //   })
-
-  //   return this._router.navigate([this.link])
-  // }, error=>{
-
-  //   console.error(error)
-
-  //   this._toastr.info("Invalid credentials. 🥺","",{
-  //     timeOut:2000
-  //   })
-
-  // }).add(()=>{
-  //   this.isLoading = false;
-  // });
 
 }
 

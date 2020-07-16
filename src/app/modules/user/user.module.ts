@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { ListUserComponent } from './components/list-user/list-user.component';
-
+import {SharedModule} from './../shared/shared.module';
+import { ViewUserComponent } from './components/view-user/view-user.component';
 
 
 @NgModule({
-  declarations: [AddUserComponent, EditUserComponent, ListUserComponent],
+  declarations: [AddUserComponent, EditUserComponent, ListUserComponent, ViewUserComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class UserModule { }
