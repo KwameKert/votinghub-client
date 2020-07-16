@@ -27,6 +27,7 @@ export class ListUserComponent implements OnInit {
   listUserColumn: string = 'col-md-12';
   addUserColumn: string = 'd-none'
   editUserColumn: string = 'd-none'
+  userId: number ;
 
 
 
@@ -85,7 +86,7 @@ export class ListUserComponent implements OnInit {
   addUser(){
     this.slide = true;
     this.getCollumnDefinitions();
-    this.listUserColumn = 'col-md-6 pt-4';
+    this.listUserColumn = 'col-md-6 ';
     this.addUserColumn = 'col-md-6';
     this.isAddUser = true;
   }
@@ -100,10 +101,16 @@ export class ListUserComponent implements OnInit {
     this.isAddUser = false;
   }
 
-  editUSer(){
 
+  editUser(id){
+   
+    this.slide = true;
+    this.getCollumnDefinitions();
+    this.listUserColumn = 'col-md-6 ';
+    this.editUserColumn = 'col-md-6';
+    this.isAddUser = true;
+    this.userId = id;
   }
-
 
   newUserCreated(event: any){
     this.loadAllUsers();
@@ -154,12 +161,6 @@ export class ListUserComponent implements OnInit {
 
   }
 
-  editUser(id){
-    this.slide = true;
-    this.getCollumnDefinitions();
-    this.listUserColumn = 'col-md-6 pt-4';
-    this.editUserColumn = 'col-md-6';
-    this.isEditUser = true;
-  }
+ 
   
 }

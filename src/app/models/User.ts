@@ -7,4 +7,5 @@ export class User {
     role: string;  
     token: string;
     stat: string;
+    roles: any;
 }

@@ -1,0 +1,48 @@
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-center ">
+                <form [formGroup]="userForm" (ngSubmit)="addUser()">
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Full Name</mat-label>
+                        <input matInput placeholder="Test User"  formControlName="fullName" >
+                        <mat-error *ngIf="userForm.get('fullName').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Email </mat-label>
+                        <input matInput placeholder="test@gmail.com"  formControlName="email" >
+                        <mat-error *ngIf="userForm.get('email').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Test User"  formControlName="username" >
+                        <mat-error *ngIf="userForm.get('username').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+                                       
+
+                      <mat-form-field appearance="outline" style="width:500px">
+                        <mat-label>Role</mat-label>
+                        <mat-select  formControlName="role">
+                          <mat-option>None</mat-option>
+                          <mat-option value="ADMIN" >Admin</mat-option>
+                          <mat-option value="AGENT" selected>AGENT</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px">
+                        <mat-label>Status</mat-label>
+                        <mat-select  formControlName="stat">
+                          <mat-option>None</mat-option>
+                          <mat-option value="active" >Active</mat-option>
+                          <mat-option value="inactive" >Inactive</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <button mat-raised-button color="primary" class="float-right mb-1" type="submit"  [disabled]="!userForm.valid"> <mat-icon>done</mat-icon> Update User</button>
+        
+                </form>
+            </div>
+        </div>
+
+  

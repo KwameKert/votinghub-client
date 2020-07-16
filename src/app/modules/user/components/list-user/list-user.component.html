@@ -77,7 +77,7 @@
                       <span>View User </span>
                     </button>
 
-                    <button mat-menu-item (click)="editUser(element)">
+                    <button mat-menu-item (click)="editUser(element.id)">
                       <mat-icon>edit</mat-icon>
                       <span>Edit User </span>
                     </button>
@@ -98,12 +98,12 @@
         </div>
 
         <div [ngClass]="addUserColumn">
-          <app-add-user (newUser)="newUserCreated($event)"></app-add-user>
+          <app-add-user (newUser)="newUserCreated($event)"  ></app-add-user>
         </div>
 
-        <!-- <div [ngClass]="editUserColumn">
-          <app-edit-user (updatedUser)="newUserCreated($event)"></app-edit-user>
-        </div> -->
+        <div [ngClass]="editUserColumn">
+          <app-edit-user (updatedUser)="newUserCreated($event)" [userId]="userId"></app-edit-user>
+        </div>
       </div>
   
     
