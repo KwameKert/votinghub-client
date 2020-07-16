@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CrudService } from 'src/app/modules/shared/service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,6 +15,8 @@ import { ViewUserComponent } from '../view-user/view-user.component';
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
+
+  @ViewChild('listUsers') listUsers: ElementRef<HTMLElement>;
 
   isLoading: boolean = true;
   dataSource: any = null;
@@ -113,6 +115,7 @@ export class ListUserComponent implements OnInit {
   }
 
   newUserCreated(event: any){
+    this.listUser();
     this.loadAllUsers();
   }
 
