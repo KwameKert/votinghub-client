@@ -1,7 +1,6 @@
-export class Election {
+export class Category {
     id: number;
     name: string;
-    year: string
     stat: string;
     createdAt: Date;
     description: string

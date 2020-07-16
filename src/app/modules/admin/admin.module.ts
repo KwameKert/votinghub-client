@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { AddUserComponent, ListUserComponent, EditUserComponent, ViewUserComponent } from '../user';
 import {UserModule} from '../user/user.module';
 import {ElectionModule} from '../election/election.module';
+import {CategoryModule} from '../category/category.module';
 
 @NgModule({
   declarations: [],
@@ -13,7 +13,8 @@ import {ElectionModule} from '../election/election.module';
     AdminRoutingModule,
     SharedModule,
     UserModule, 
-    ElectionModule
+    ElectionModule,
+    CategoryModule
   ],
   providers: [
     DatePipe 

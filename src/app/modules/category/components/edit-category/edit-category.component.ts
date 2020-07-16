@@ -4,21 +4,21 @@ import { CrudService } from '../../../shared/service/crud.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from '../../../../models/Category';
 
-import {Election} from 'src/app/models/Election';
 
 @Component({
-  selector: 'app-edit-election',
-  templateUrl: './edit-election.component.html',
-  styleUrls: ['./edit-election.component.css']
+  selector: 'app-edit-category',
+  templateUrl: './edit-category.component.html',
+  styleUrls: ['./edit-category.component.css']
 })
-export class EditElectionComponent implements OnInit {
+export class EditCategoryComponent implements OnInit {
 
-  @Input() electionId : number;
-  electionForm: FormGroup ;
+  @Input() categoryId : number;
+  categoryForm: FormGroup ;
   role: any = '';
 
-  @Output() updatedElection: EventEmitter<boolean> = new EventEmitter();
+  @Output() updatedCategory: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private _fb: FormBuilder, private _crudService: CrudService, private _toastr: ToastrService,  private ngxService: NgxUiLoaderService, private _route: ActivatedRoute) { }
 
@@ -28,10 +28,9 @@ export class EditElectionComponent implements OnInit {
   }
 
   loadForm(){
-    this.electionForm = this._fb.group({
-      id: this.electionId,
+    this.categoryForm = this._fb.group({
+      id: this.categoryId,
       name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-      year: new FormControl('', [Validators.required]),
       description: '',
       stat: ''
     })
@@ -39,14 +38,14 @@ export class EditElectionComponent implements OnInit {
   }
 
 
-  addElection(){
+  addCategory(){
 
     this.ngxService.start()
-    this._crudService.updateItem({data: this.electionForm.value, module:"elections"}).subscribe(data=>{
-     this.electionForm.reset();
+    this._crudService.updateItem({data: this.categoryForm.value, module:"category"}).subscribe(data=>{
+     this.categoryForm.reset();
       this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
 
-      this.updatedElection.emit(true)
+      this.updatedCategory.emit(true)
     }, error=>{
 
       this._toastr.error("Please authenticate", "Oops 🥺", {  timeOut:4000});
@@ -60,14 +59,13 @@ export class EditElectionComponent implements OnInit {
 
 
 
-  findElection(id){
+  findCategory(id){
 
     if(id){
-      this._crudService.fetchItem({id: id, module: 'elections'}).subscribe(data=>{
-        let result: Election = data.data;
-        this.electionForm.patchValue({
+      this._crudService.fetchItem({id: id, module: 'category'}).subscribe(data=>{
+        let result: Category = data.data;
+        this.categoryForm.patchValue({
           name: result.name,
-          year: result.year,
           stat: result.stat,
           id: result.id,
           description: result.description
@@ -84,11 +82,10 @@ export class EditElectionComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
   
-    this.electionId = changes.electionId.currentValue;
+    this.categoryId = changes.categoryId.currentValue;
      this.loadForm();
-    this.findElection(this.electionId);
+    this.findCategory(this.categoryId);
   }
   
-
 
 }

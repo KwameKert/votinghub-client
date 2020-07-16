@@ -1,18 +1,12 @@
 
         <div class="row mt-3">
             <div class="col-md-12 text-center ">
-                <form [formGroup]="electionForm" (ngSubmit)="addElection()">
+                <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
                     <mat-form-field appearance="outline" style="width:500px"  >
                         <mat-label>Name</mat-label>
-                        <input matInput placeholder="Tiger"  formControlName="name" >
-                        <mat-error *ngIf="electionForm.get('name').invalid"> Invalid input </mat-error>
+                        <input matInput placeholder="SRC"  formControlName="name" >
+                        <mat-error *ngIf="categoryForm.get('name').invalid"> Invalid input </mat-error>
                       </mat-form-field>
-                    <mat-form-field appearance="outline" style="width:500px"  >
-                        <mat-label>Year </mat-label>
-                        <input matInput placeholder="2016"  formControlName="year" >
-                        <mat-error *ngIf="electionForm.get('year').invalid"> Invalid input </mat-error>
-                      </mat-form-field>
-
                   
                       <mat-form-field appearance="outline" style="width:500px">
                         <mat-label>Status</mat-label>
@@ -28,7 +22,7 @@
                         <textarea matInput formControlName="description" rows="5"></textarea>
                       </mat-form-field>
 
-                      <button mat-raised-button color="primary" class="float-right mb-1" type="submit"  [disabled]="!electionForm.valid"> <mat-icon>done</mat-icon> Save Election</button>
+                      <button mat-raised-button color="primary" class="float-right mb-1 mr-0" type="submit"  [disabled]="!categoryForm.valid"> <mat-icon>done</mat-icon> Save Category</button>
         
                 </form>
             </div>

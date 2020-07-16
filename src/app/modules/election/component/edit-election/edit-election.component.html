@@ -12,6 +12,11 @@
                         <input matInput placeholder="2016"  formControlName="year" >
                         <mat-error *ngIf="electionForm.get('year').invalid"> Invalid input </mat-error>
                       </mat-form-field>
+                      
+                      <mat-form-field appearance="outline" style="width:500px" >
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description" rows=5></textarea>
+                      </mat-form-field>
 
                    
 

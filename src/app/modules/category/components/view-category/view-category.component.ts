@@ -2,15 +2,15 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-view-election',
-  templateUrl: './view-election.component.html',
-  styleUrls: ['./view-election.component.css']
+  selector: 'app-view-category',
+  templateUrl: './view-category.component.html',
+  styleUrls: ['./view-category.component.css']
 })
-export class ViewElectionComponent implements OnInit {
+export class ViewCategoryComponent implements OnInit {
 
- 
+   
   constructor(
-    public dialogRef: MatDialogRef<ViewElectionComponent>,
+    public dialogRef: MatDialogRef<ViewCategoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
    
 
