@@ -110,7 +110,7 @@ export class ListCategoryComponent implements OnInit {
 
   deleteCategory(id: Number){
     let data = {
-      module: 'categorys',
+      module: 'category',
       id
     }
     const dialogRef = this.dialog.open(DeleteItemComponent, {

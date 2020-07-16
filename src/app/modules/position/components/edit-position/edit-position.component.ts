@@ -30,9 +30,10 @@ export class EditPositionComponent implements OnInit {
   loadForm(){
     this.positionForm = this._fb.group({
       name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-      categoryId: new FormControl('',Validators.required),
+      category_id: new FormControl('',Validators.required),
       description: '',
-      stat: ''
+      stat: '',
+      id: ''
     })
   }
 
@@ -81,6 +82,7 @@ export class EditPositionComponent implements OnInit {
         this.positionForm.patchValue({
           name: result.name,
           stat: result.stat,
+          category_id: result.cat_id,
           id: result.id,
           description: result.description
         })

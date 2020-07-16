@@ -54,8 +54,10 @@ export class ListPositionComponent implements OnInit {
           timeOut:2000
         })
       }else{
+
         this.dataSource = data.data;
         this.dataSource.paginator = this.paginator;
+        
       }
       
       this.isLoading = false;
@@ -111,7 +113,7 @@ export class ListPositionComponent implements OnInit {
 
   deletePosition(id: Number){
     let data = {
-      module: 'positions',
+      module: 'position',
       id
     }
     const dialogRef = this.dialog.open(DeleteItemComponent, {
