@@ -1,1 +1,31 @@
-<p>view-user works!</p>
+
+<h3 mat-dialog-title>View User 
+    <span *ngIf="data.stat == 'inactive'" class="badge badge-warning"> {{data.stat}} </span> 
+    <span *ngIf="data.stat == 'active'" class="badge badge-success"> {{data.stat}} </span>
+</h3>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="container">
+    <div  class="row justify-content-center pt-4 ">
+
+        <div class="col-6">
+            <p ><b>Full Name: </b>{{data.fullName}}</p>
+            <p ><b>Username: </b>{{data.username}}</p>
+            <p ><b>Email: </b>{{data.email}}</p>
+           
+            <!-- <p >Created At: {{data.createdAt | date:'fullDate'}}</p> -->
+            
+        </div>
+
+        <div class="col-6">
+            <p ><b>Role: </b>{{data.roles[0].role}}</p>
+            <p ><b>Created At: </b>{{data.createdAt | date:'mediumDate'}}</p>
+        </div>
+ 
+    
+    </div>
+    
+</div>
+<div mat-dialog-actions class="float-right">
+    <button mat-button (click)="close()" class="float-right">Close</button>
+    
+  </div>

@@ -18,7 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
-import { ErrorInterceptor, TokenInterceptor} from './interceptors'
+import { ErrorInterceptor, TokenInterceptor} from './interceptors';
+import { AddElectionComponent } from './modules/election/component/add-election/add-election.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ErrorInterceptor, TokenInterceptor} from './interceptors'
     SidebarComponent,
     FooterComponent,
     DefaultComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    AddElectionComponent
 
   ],
   imports: [

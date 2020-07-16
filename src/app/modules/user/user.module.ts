@@ -12,6 +12,7 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
   imports: [
     CommonModule,
     SharedModule
-  ]
+  ],
+  exports: [AddUserComponent, EditUserComponent, ListUserComponent, ViewUserComponent]
 })
 export class UserModule { }

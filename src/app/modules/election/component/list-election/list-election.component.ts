@@ -1,65 +1,55 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CrudService } from 'src/app/modules/shared/service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteItemComponent } from 'src/app/modules/shared/components/delete-item/delete-item.component';
-import { ViewUserComponent } from '../view-user/view-user.component';
-
+import { DeleteItemComponent } from '../../../shared/components/delete-item/delete-item.component';
+import { CrudService } from '../../../shared/service/crud.service';
+import { ViewElectionComponent} from '../view-election/view-election.component';
 
 @Component({
-  selector: 'app-list-user',
-  templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.css']
+  selector: 'app-list-election',
+  templateUrl: './list-election.component.html',
+  styleUrls: ['./list-election.component.css']
 })
-export class ListUserComponent implements OnInit {
-
-  @ViewChild('listUsers') listUsers: ElementRef<HTMLElement>;
+export class ListElectionComponent implements OnInit {
 
   isLoading: boolean = true;
   dataSource: any = null;
   slide: boolean = false;
-
-  isAddUser: boolean = false;
-  isEditUser: boolean = false
-
+  isAddElection: boolean = false;
+  isEditElection: boolean = false
   displayedColumns: any ;
-  listUserColumn: string = 'col-md-12';
-  addUserColumn: string = 'd-none'
-  editUserColumn: string = 'd-none'
-  userId: number ;
-
-
+  listElectionColumn: string = 'col-md-12';
+  addElectionColumn: string = 'd-none'
+  electionId: number ;
 
   allowedColumns: any = [
-    {def:'id', slideShow: false},
-    {def: 'username', slideShow: true},
-    {def: 'full name', slideShow: false},
-    {def: 'email',  slideShow: true},
-    {def: 'role', slideShow:false},
+    {def:'id', slideShow: true},
+    {def: 'name', slideShow: true},
+    {def: 'year', slideShow: true},
+    {def: 'createdAt', slideShow: true},
     {def: 'actions', slideShow: false}
   ];
+
 
   constructor(private _crudService: CrudService, public dialog: MatDialog, private _snackBar: MatSnackBar, private _router: Router, private _toastr: ToastrService) { }
 
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  
-
   ngOnInit(): void {
     this.getCollumnDefinitions();
-    this.loadAllUsers();
+    this.loadAllElections();
   }
 
 
-  loadAllUsers(){
-    this._crudService.fetchAll("users").subscribe(data=>{
+  loadAllElections(){
+    this._crudService.fetchAll("elections").subscribe(data=>{
       
       if(data.data == null){
-        this._toastr.info("No users found. 🥺","",{
+        this._toastr.info("No elections found. 🥺","",{
           timeOut:2000
         })
       }else{
@@ -85,44 +75,42 @@ export class ListUserComponent implements OnInit {
 
   }
 
-  addUser(){
+  addElection(){
     this.slide = true;
     this.getCollumnDefinitions();
-    this.listUserColumn = 'col-md-6 ';
-    this.addUserColumn = 'col-md-6';
-    this.isAddUser = true;
+    this.listElectionColumn = 'col-md-6 ';
+    this.addElectionColumn = 'col-md-6';
+    this.isAddElection = true;
   }
 
-  listUser(){
+  listElection(){
 
     this.slide = false;
     this.getCollumnDefinitions();
-    this.listUserColumn = 'col-md-12';
-    this.addUserColumn = 'd-none';
-    this.editUserColumn = 'd-none';
-    this.isAddUser = false;
+    this.listElectionColumn = 'col-md-12';
+    this.addElectionColumn = 'd-none';
+    this.isAddElection = false;
   }
 
 
-  editUser(id){
+  editElection(id){
    
     this.slide = true;
     this.getCollumnDefinitions();
-    this.listUserColumn = 'col-md-6 ';
-    this.editUserColumn = 'col-md-6';
-    this.isAddUser = true;
-    this.userId = id;
+    this.listElectionColumn = 'col-md-6 ';
+    this.isAddElection = true;
+    this.electionId = id;
   }
 
-  newUserCreated(event: any){
-    this.listUser();
-    this.loadAllUsers();
+  newElectionCreated(event: any){
+    this.listElection();
+    this.loadAllElections();
   }
 
 
-  deleteUser(id: Number){
+  deleteElection(id: Number){
     let data = {
-      module: 'users',
+      module: 'elections',
       id
     }
     const dialogRef = this.dialog.open(DeleteItemComponent, {
@@ -133,10 +121,10 @@ export class ListUserComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.event){
-        this._snackBar.open("User Deleted 🙂  ", "", {
+        this._snackBar.open("Election Deleted 🙂  ", "", {
           duration: 2000,
         });
-       this.loadAllUsers()
+       this.loadAllElections()
 
       }else{
 
@@ -147,12 +135,12 @@ export class ListUserComponent implements OnInit {
     });
   }
 
-  viewUser(user){
+  viewElection(election){
 
-    const dialogRef = this.dialog.open(ViewUserComponent, {
+    const dialogRef = this.dialog.open(ViewElectionComponent, {
       width: '600px',
       height: '300px',
-      data: user
+      data: election
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -164,6 +152,4 @@ export class ListUserComponent implements OnInit {
 
   }
 
- 
-  
 }

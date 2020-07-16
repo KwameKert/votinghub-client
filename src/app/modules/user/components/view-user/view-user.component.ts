@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-view-user',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<ViewUserComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+   
 
-  ngOnInit(): void {
+  ngOnInit() {
+  
+   //console.log(this.data);
   }
+
+  close(){
+ 
+      this.dialogRef.close();
+    
+   }
+
 
 }
