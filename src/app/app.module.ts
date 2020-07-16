@@ -19,8 +19,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { ErrorInterceptor, TokenInterceptor} from './interceptors';
-import { AddElectionComponent } from './modules/election/component/add-election/add-election.component'
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +27,7 @@ import { AddElectionComponent } from './modules/election/component/add-election/
     SidebarComponent,
     FooterComponent,
     DefaultComponent,
-    AdminLayoutComponent,
-    AddElectionComponent
+    AdminLayoutComponent
 
   ],
   imports: [

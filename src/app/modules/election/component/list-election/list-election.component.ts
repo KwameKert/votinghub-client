@@ -23,6 +23,7 @@ export class ListElectionComponent implements OnInit {
   displayedColumns: any ;
   listElectionColumn: string = 'col-md-12';
   addElectionColumn: string = 'd-none'
+  editElectionColumn: string = 'd-none';
   electionId: number ;
 
   allowedColumns: any = [
@@ -89,6 +90,7 @@ export class ListElectionComponent implements OnInit {
     this.getCollumnDefinitions();
     this.listElectionColumn = 'col-md-12';
     this.addElectionColumn = 'd-none';
+    this.editElectionColumn = 'd-none';
     this.isAddElection = false;
   }
 
@@ -98,10 +100,11 @@ export class ListElectionComponent implements OnInit {
     this.slide = true;
     this.getCollumnDefinitions();
     this.listElectionColumn = 'col-md-6 ';
+    this.editElectionColumn = 'col-md-6 ';
     this.isAddElection = true;
     this.electionId = id;
   }
-
+ 
   newElectionCreated(event: any){
     this.listElection();
     this.loadAllElections();

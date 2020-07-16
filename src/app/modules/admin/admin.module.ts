@@ -4,6 +4,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { AddUserComponent, ListUserComponent, EditUserComponent, ViewUserComponent } from '../user';
 import {UserModule} from '../user/user.module';
+import {ElectionModule} from '../election/election.module';
 
 @NgModule({
   declarations: [],
@@ -11,7 +12,8 @@ import {UserModule} from '../user/user.module';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    UserModule
+    UserModule, 
+    ElectionModule
   ],
   providers: [
     DatePipe 
