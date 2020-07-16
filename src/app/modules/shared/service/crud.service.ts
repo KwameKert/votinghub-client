@@ -32,8 +32,8 @@ export class CrudService {
 
 
    
-  public fetchItem({id, module}): Observable<any>{
-    return this._httpClient.get(`${this._baseUrl}/${module}/${id}`)
+  public fetchItem({id, module}): Observable<ApiResponse<any>>{
+    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/${module}/${id}`)
   }
 
 
@@ -44,13 +44,13 @@ export class CrudService {
 
 
 
-  public addItem(data, module): Observable<any>{
-    return this._httpClient.post(`${this._baseUrl}/${module}/`, data);
+  public addItem(data, module): Observable<ApiResponse<any>>{
+    return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/${module}/`, data);
   }
 
 
-  public updateItem({data, module}): Observable<any>{
-    return this._httpClient.put(`${this._baseUrl}/${module}/`, data);
+  public updateItem({data, module}): Observable<ApiResponse<any>>{
+    return this._httpClient.put<ApiResponse<any>>(`${this._baseUrl}/${module}/`, data);
   }
 
 
