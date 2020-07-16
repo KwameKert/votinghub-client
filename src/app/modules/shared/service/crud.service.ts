@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment} from '../../../../environments/environment';
 import { Observable } from 'rxjs';
+import { ApiResponse } from 'src/app/models/ApiResponse';
 
 
 export interface User {
@@ -36,8 +37,8 @@ export class CrudService {
   }
 
 
-  public fetchAll(module: any):  Observable<any> {
-    return this._httpClient.get(`${this._baseUrl}/${module}/`)
+  public fetchAll(module: any):  Observable<ApiResponse<any>> {
+    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/${module}/`)
   }
 
 

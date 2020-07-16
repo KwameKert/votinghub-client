@@ -17,6 +17,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+import { ErrorInterceptor, TokenInterceptor} from './interceptors'
 
 @NgModule({
   declarations: [
@@ -43,10 +45,12 @@ import { ToastrModule } from 'ngx-toastr';
     MatListModule,
     MatSidenavModule,  
     ToastrModule.forRoot(), 
-  
-    
   ],
-  providers: [],
+  providers: [
+    DatePipe, 
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

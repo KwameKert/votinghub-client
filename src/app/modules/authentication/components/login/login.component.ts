@@ -47,9 +47,7 @@ loginUser(){
           }
       },
       error => {
-        this._toastr.info("Invalid credentials. 🥺","",{
-              timeOut:2000
-            })
+        console.error("Opops an error occured")
       });
 
 

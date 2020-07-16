@@ -52,11 +52,17 @@ export class ListUserComponent implements OnInit {
 
 
   loadAllUsers(){
-    this._crudService.fetchAll("user").subscribe(data=>{
+    this._crudService.fetchAll("users").subscribe(data=>{
       
-    
-      this.dataSource = data.data;
-      this.dataSource.paginator = this.paginator;
+      if(data.data == null){
+        this._toastr.info("No users found. 🥺","",{
+          timeOut:2000
+        })
+      }else{
+        this.dataSource = data.data;
+        this.dataSource.paginator = this.paginator;
+      }
+      
       this.isLoading = false;
     }, error=>{
       this._toastr.error("Oops an error. 🥺","",{
@@ -78,7 +84,7 @@ export class ListUserComponent implements OnInit {
   addUser(){
     this.slide = true;
     this.getCollumnDefinitions();
-    this.listUserColumn = 'col-md-6';
+    this.listUserColumn = 'col-md-6 pt-4';
     this.addUserColumn = 'col-md-6';
     this.isAddUser = true;
   }
