@@ -1,0 +1,1 @@
+export * from './components/add-candidate/add-candidate.component';

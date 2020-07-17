@@ -4,13 +4,15 @@ import { AddCandidateComponent } from './components/add-candidate/add-candidate.
 import { EditCandidateComponent } from './components/edit-candidate/edit-candidate.component';
 import { ViewCandidateComponent } from './components/view-candidate/view-candidate.component';
 import { ListCandidateComponent } from './components/list-candidate/list-candidate.component';
-
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [AddCandidateComponent, EditCandidateComponent, ViewCandidateComponent, ListCandidateComponent],
   imports: [
-    CommonModule
-  ]
+    CommonModule, 
+    SharedModule
+  ],
+  exports: [AddCandidateComponent]
 })
-export class CandidatesModule { }
+export class CandidateModule { }

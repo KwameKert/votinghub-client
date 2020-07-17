@@ -14,7 +14,7 @@ export class AdminLayoutComponent implements OnInit {
     {name: 'Elections', url: 'election/list',  icon: 'how_to_vote'},
     {name: 'Categories', url: 'category/list', icon: 'extension'},
     {name: 'Positions', url: 'position/list', icon: 'stars'},
-    {name: 'Candidates', url: '/admin/list_invoices', icon: 'contacts'},
+    {name: 'Candidates', url: 'candidate/list', icon: 'contacts'},
     {name: 'Users', url: 'user/list', icon: 'supervised_user_circle'},
   ]
     

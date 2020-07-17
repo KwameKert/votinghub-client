@@ -1,0 +1,49 @@
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-center ">
+                <form [formGroup]="candidateForm" (ngSubmit)="addCandidate()">
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="SRC"  formControlName="name" >
+                        <mat-error *ngIf="candidateForm.get('name').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px">
+                        <mat-label>Candidate</mat-label>
+                        <mat-select  formControlName="position_id">
+                            <mat-option *ngFor="let position of positionOptions" [value]="position.id">
+                                {{position.name}} - {{position.cat_name}}
+                              </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px">
+                        <mat-label>Election</mat-label>
+                        <mat-select  formControlName="election_id">
+                            <mat-option *ngFor="let election of electionOptions" [value]="election.id">
+                                {{election.name}} - {{election.year}}
+                              </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  
+                      <mat-form-field appearance="outline" style="width:500px">
+                        <mat-label>Status</mat-label>
+                        <mat-select  formControlName="stat">
+                          <mat-option>None</mat-option>
+                          <mat-option value="active" >Active</mat-option>
+                          <mat-option value="inactive" >Inactive</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px" >
+                        <mat-label>Description</mat-label>
+                         <textarea matInput formControlName="description" rows="5"></textarea>
+                      </mat-form-field>
+
+                      <button mat-raised-button color="primary" class="float-right mb-1 mr-0" type="submit"  [disabled]="!candidateForm.valid"> <mat-icon>done</mat-icon> Save Candidate</button>
+        
+                </form>
+            </div>
+        </div>
+
+  
