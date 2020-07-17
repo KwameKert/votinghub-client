@@ -41,37 +41,39 @@ export class ListPositionComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit(): void {
+
     this.getCollumnDefinitions();
     this.loadAllPosition();
+
   }
 
 
   loadAllPosition(){
-    this._crudService.fetchAll("position").subscribe(data=>{
-      
+
+    this._crudService.fetchAll("position").subscribe(data=>{ 
       if(data.data == null){
         this._toastr.info("No positions found. 🥺","",{
           timeOut:2000
-        })
+        })      
       }else{
-
         this.dataSource = data.data;
-        this.dataSource.paginator = this.paginator;
-        
+        this.dataSource.paginator = this.paginator;       
       }
-      
+ 
       this.isLoading = false;
     }, error=>{
-   
     })
   }
 
   getCollumnDefinitions(){
+
     if(this.slide){
       this.displayedColumns = this.allowedColumns
-                                  .filter(col => col.slideShow == true ).map(cd => cd.def);
+                                  .filter(col => col.slideShow == true )
+                                  .map(cd => cd.def);
     }else{
-      this.displayedColumns = this.allowedColumns.map(cd => cd.def);
+      this.displayedColumns = this.allowedColumns
+                                  .map(cd => cd.def);
     }
 
   }

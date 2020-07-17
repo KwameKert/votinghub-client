@@ -4,11 +4,12 @@ import { Observable, of, throwError } from "rxjs";
 import { tap, catchError } from "rxjs/operators";
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
+import { AuthService } from '../modules/authentication/service/auth.service';
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(public _toastr: ToastrService, private _router: Router) {}
+    constructor(public _toastr: ToastrService, private _router: Router, private _authService: AuthService) {}
 intercept(
         req: HttpRequest<any>,
         next: HttpHandler
@@ -22,6 +23,8 @@ intercept(
                     if(err.status == 403){
                         this._toastr.error("Please authenticate", "Oops 🥺", {  timeOut:4000});
                         this._router.navigate(['/login']);
+                        this._authService.logout();
+
                     }else{
 
                         const error = err.error.message || err.statusText;
