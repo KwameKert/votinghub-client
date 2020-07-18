@@ -19,6 +19,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { ErrorInterceptor, TokenInterceptor} from './interceptors';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { ErrorInterceptor, TokenInterceptor} from './interceptors';
     MatMenuModule,
     MatButtonModule,
     MatListModule,
+    NgxUiLoaderModule,
     MatSidenavModule,  
     ToastrModule.forRoot(), 
   ],
