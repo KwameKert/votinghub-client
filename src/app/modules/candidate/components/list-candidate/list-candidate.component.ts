@@ -65,7 +65,7 @@ export class ListCandidateComponent implements OnInit {
 
 
   addCandidate(){
-    this._router.navigate(["admin/candiate/add"])
+    this._router.navigate(["admin/candidate/add"])
   }
 
 

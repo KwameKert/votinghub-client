@@ -6,9 +6,9 @@
 
     <mat-card-content>
 
-      <button mat-raised-button color="primary" class="float-right mb-1" routerLink="admin/candidate/add"> <mat-icon>add</mat-icon> New Candidate</button>
+      <button mat-raised-button color="primary" class="float-right mb-1" (click)="addCandidate()"> <mat-icon>add</mat-icon> New Candidate</button>
 
-      <!-- <button #listCandidates mat-raised-button color="accent" class="float-right mb-1" (click)="listCandidate()" *ngIf="isAddCandidate" > <mat-icon>toc</mat-icon> List Candidate</button> -->
+      
 
       <div class="row" style="width:100%" >
 

@@ -1,11 +1,17 @@
 
-     <mat-card class="mat-elevation-z5">
+     <mat-card class="mat-elevation-z5 " style="margin-bottom: 100px;">
 
       <mat-card-header>
           <mat-card-title>Add Candidate</mat-card-title>
       </mat-card-header>
   
-      <mat-card-content>
+      <mat-card-content >
+  <div class="row">
+    <div class="col-12">
+
+      <button mat-raised-button color="accent" class="float-right mb-" (click)="listCandidates()"> <mat-icon>list</mat-icon> List Candidates</button>
+    </div>
+  </div>
   
      <div class="row mt-3 ">
           <div class="col-md-5">

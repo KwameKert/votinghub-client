@@ -6,6 +6,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 import {Position} from  '../../../../models/Position';
 import {Election} from  '../../../../models/Election';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-candidate',
@@ -26,7 +27,7 @@ export class AddCandidateComponent implements OnInit {
 
   role: any = '';
 
-  constructor(private _fb: FormBuilder, private _crudService: CrudService, private _toastr: ToastrService,  private ngxService: NgxUiLoaderService,) { }
+  constructor(private _fb: FormBuilder, private _crudService: CrudService, private _toastr: ToastrService,  private ngxService: NgxUiLoaderService, private _router: Router) { }
 
   ngOnInit(): void {
     this.ngxService.start()
@@ -77,22 +78,22 @@ export class AddCandidateComponent implements OnInit {
 
   }
 
+  listCandidates(){
+    this._router.navigate(["admin/candidate/list"])
+  }
 
   addCandidate(){
-    
+    //passing form values to FormData
     for(let key of Object.keys(this.candidateForm.value)){
       this.formData.append(key,this.candidateForm.value[key] )
     }
 
-
     this.ngxService.start()
     return new Promise((resolve,reject)=>{
     this._crudService.addItem(this.formData, "candidate").subscribe(data=>{
-      
       this.loadForm();
       this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
       resolve();
-      
     }, error=>{
       reject();
       console.error(error)
@@ -101,11 +102,8 @@ export class AddCandidateComponent implements OnInit {
     this.ngxService.stop()
   })
 
-    
-
+  
   }
-
-
 
 
   fileProgress(fileInput: any) {
