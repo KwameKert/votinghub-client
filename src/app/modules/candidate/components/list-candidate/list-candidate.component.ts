@@ -3,11 +3,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {MatTableDataSource} from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteItemComponent } from '../../../shared/components/delete-item/delete-item.component';
 import { CrudService } from '../../../shared/service/crud.service';
 
 import { ViewCandidateComponent} from '../view-candidate/view-candidate.component';
+import { Candidate } from 'src/app/models/Candidate';
 
 @Component({
   selector: 'app-list-candidate',
@@ -17,7 +19,7 @@ import { ViewCandidateComponent} from '../view-candidate/view-candidate.componen
 export class ListCandidateComponent implements OnInit {
 
   isLoading: boolean = true;
-  dataSource: any = null;
+  dataSource : any;
   slide: boolean = false;
   isAddCandidate: boolean = false;
   isEditCandidate: boolean = false;
@@ -28,7 +30,8 @@ export class ListCandidateComponent implements OnInit {
   constructor(private _crudService: CrudService, public dialog: MatDialog, private _snackBar: MatSnackBar, private _router: Router, private _toastr: ToastrService) { }
 
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  
 
   ngOnInit(): void {
 
@@ -39,20 +42,25 @@ export class ListCandidateComponent implements OnInit {
 
   loadAllCandidate(){
 
-    this._crudService.fetchAll("candidate").subscribe(data=>{ 
-      if(data.data == null){
-        this._toastr.info("No candidates found. 🥺","",{
-          timeOut:2000
-        })      
-      }else{
-        this.dataSource = data.data;
-        this.dataSource.paginator = this.paginator;
-               
-      }
- 
-      this.isLoading = false;
-    }, error=>{
-    })
+    
+      this._crudService.fetchAll("candidate").subscribe(data=>{ 
+        if(data.data == null){
+          this._toastr.info("No candidates found. 🥺","",{
+            timeOut:2000
+          })      
+        }else{
+          this.dataSource = new MatTableDataSource<Candidate>(data.data);
+         this.dataSource.paginator = this.paginator;   
+        }
+      
+        this.isLoading = false;
+      }, error=>{
+       
+      })
+    
+    
+
+  
   }
 
 

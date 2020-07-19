@@ -85,15 +85,18 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+
+            
            </ng-template>
 
+           <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>
 
+        
       </div>
       
-      <mat-paginator [length]="100" 
-      [pageSize]="10" #paginator
-      [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    
       
     </mat-card-content>
 </mat-card>
