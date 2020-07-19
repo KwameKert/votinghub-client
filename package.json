@@ -28,6 +28,7 @@
     "ngx-skeleton-loader": "^2.2.1",
     "ngx-toastr": "^13.0.0",
     "ngx-ui-loader": "^9.1.1",
+    "particles.js": "^2.0.0",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

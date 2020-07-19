@@ -3,6 +3,7 @@ import { RouterModule, Routes ,PreloadAllModules} from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {DefaultComponent} from './layouts/default/default.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {  VotingLayoutComponent } from './layouts/voting-layout/voting-layout.component';
 import {AuthGuard} from './auth.guard';
 
 const routes: Routes= [
@@ -19,15 +20,14 @@ const routes: Routes= [
   component: AdminLayoutComponent,
   loadChildren: () => import('./modules/admin/admin.module')
                      .then(m => m.AdminModule)
+},
+{
+  path:'htau', 
+  component: VotingLayoutComponent,
+  loadChildren: () => import('./modules/voting/voting.module')
+                     .then(m => m.VotingModule)
 }
 
-// {
-//   path:'', 
-//   component: DefaultComponent,
-//   loadChildren: () => import('./modules/student/student.module')
-//                      .then(m => m.StudentModule)
-// },
-//{path: "**", redirectTo: "login"}
 ];
 
 @NgModule({

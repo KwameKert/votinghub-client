@@ -20,6 +20,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { ErrorInterceptor, TokenInterceptor} from './interceptors';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     SidebarComponent,
     FooterComponent,
     DefaultComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    VotingLayoutComponent,
 
   ],
   imports: [
