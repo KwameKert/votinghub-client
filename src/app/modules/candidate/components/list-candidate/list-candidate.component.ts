@@ -94,7 +94,8 @@ export class ListCandidateComponent implements OnInit {
         this._snackBar.open("Candidate Deleted 🙂  ", "", {
           duration: 2000,
         });
-       this.loadAllCandidate()
+        this.dataSource = new MatTableDataSource<Candidate>(result.data);
+         this.dataSource.paginator = this.paginator;  
 
       }else{
 
