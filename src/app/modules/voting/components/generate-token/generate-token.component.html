@@ -1,16 +1,34 @@
 <div id="particles-js">
 
-  <div class="row  justify-content-center" >
+  <div class="row  justify-content-center " >
      
     <div class="col-md-6 col-sm-12  mt-5">
-        <mat-card class="example-card">
+        <mat-card class="example-card test">
             <mat-card-header class="justify-content-center">
               <mat-card-title class="text-center">GTUC DECIDES 2020</mat-card-title>
             </mat-card-header>
+            <mat-divider></mat-divider>
         
             <mat-card-content>
+
+              <div class="row justify-content-center mt-3">
+                <img src="assets/images/gtuc-src.png" alt="">
+              </div>
               
-              
+              <form class="text-center" [formGroup]="indexForm" (ngSubmit)="generateToken()">
+  
+                <mat-form-field appearance="outline" style="width:300px"  >
+                    <mat-label>Index Number</mat-label>
+                    <input matInput placeholder="040854116"  formControlName="indexNumber" >
+                    <mat-error *ngIf="indexForm.get('indexNumber').invalid"> Invalid input </mat-error>
+                  </mat-form-field>
+
+                  <div align="center">
+                    <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!indexForm.valid">Login</button>
+                  </div>
+
+
+                  </form>
                 
                 
               
