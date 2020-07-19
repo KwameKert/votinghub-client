@@ -1,6 +1,31 @@
 
-        <div class="row mt-3">
-            <div class="col-md-12 text-center ">
+     <mat-card class="mat-elevation-z5 " style="margin-bottom: 100px;">
+
+      <mat-card-header>
+          <mat-card-title>Edit Candidate</mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content >
+  <div class="row">
+    <div class="col-12">
+
+      <button mat-raised-button color="accent" class="float-right mb-" (click)="listCandidates()"> <mat-icon>list</mat-icon> List Candidates</button>
+    </div>
+  </div>
+  
+     <div class="row mt-3 ">
+          <div class="col-md-5">
+            <div *ngIf="previewUrl; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock > 
+                 <img [src]="previewUrl" class="img-thumbnail " height="300" />   
+                <p class="lead mt-2 text-center">Candidate Image</p>         
+            </ng-template>
+            <ng-template #elseBlock>
+                <img src="assets/images/candidate.jpg" class="img-thumbnail"  />  
+            </ng-template>
+
+          </div>
+            <div class="col-md-7  text-center">
                 <form [formGroup]="candidateForm" (ngSubmit)="addCandidate()">
                     <mat-form-field appearance="outline" style="width:500px"  >
                         <mat-label>Name</mat-label>
@@ -9,7 +34,7 @@
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" style="width:500px">
-                        <mat-label>Candidate</mat-label>
+                        <mat-label>Position</mat-label>
                         <mat-select  formControlName="position_id">
                             <mat-option *ngFor="let position of positionOptions" [value]="position.id">
                                 {{position.name}} - {{position.cat_name}}
@@ -25,7 +50,18 @@
                               </mat-option>
                         </mat-select>
                       </mat-form-field>
-                  
+
+                      <div class="custom-file mb-3"  style="width:500px"  >
+                        <input type="file" class="custom-file-input" id="customFile" name="filename" (change)="fileProgress($event)" #imageHolder>
+                        <label class="custom-file-label" for="customFile">Candidate Image</label>
+                      </div>
+
+
+                      <mat-form-field appearance="outline" style="width:500px" >
+                        <mat-label>Description</mat-label>
+                         <textarea matInput formControlName="description" rows="5"></textarea>
+                      </mat-form-field>
+
                       <mat-form-field appearance="outline" style="width:500px">
                         <mat-label>Status</mat-label>
                         <mat-select  formControlName="stat">
@@ -35,15 +71,19 @@
                         </mat-select>
                       </mat-form-field>
 
-                      <mat-form-field appearance="outline" style="width:500px" >
-                        <mat-label>Description</mat-label>
-                         <textarea matInput formControlName="description" rows="5"></textarea>
-                      </mat-form-field>
+                      <div class="row ">
+                        <div class="col-12">
 
-                      <button mat-raised-button color="primary" class="float-right mb-1 mr-0" type="submit"  [disabled]="!candidateForm.valid"> <mat-icon>done</mat-icon> Save Candidate</button>
+                          <button mat-raised-button color="primary" class="float-right mr-5" type="submit"  [disabled]="!candidateForm.valid"> <mat-icon>done</mat-icon> Update Candidate</button>
+                        </div>
+                      </div>
+                      
         
                 </form>
             </div>
         </div>
+
+        </mat-card-content>
+        </mat-card>
 
   

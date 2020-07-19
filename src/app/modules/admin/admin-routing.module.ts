@@ -4,7 +4,7 @@ import {ListUserComponent} from '../user';
 import {ListElectionComponent} from '../election';
 import {ListCategoryComponent} from '../category';
 import {ListPositionComponent} from '../position';
-import {AddCandidateComponent, ListCandidateComponent} from '../candidate';
+import {AddCandidateComponent, ListCandidateComponent, EditCandidateComponent} from '../candidate';
 
 const routes: Routes = [
     {path: 'user/list', component: ListUserComponent },
@@ -13,6 +13,7 @@ const routes: Routes = [
     {path: 'position/list', component: ListPositionComponent },
     {path: 'candidate/add', component: AddCandidateComponent },
     {path: 'candidate/list', component: ListCandidateComponent },
+    {path: 'candidate/edit/:id', component: EditCandidateComponent },
 
 ];
 

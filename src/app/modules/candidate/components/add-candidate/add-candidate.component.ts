@@ -30,7 +30,6 @@ export class AddCandidateComponent implements OnInit {
   constructor(private _fb: FormBuilder, private _crudService: CrudService, private _toastr: ToastrService,  private ngxService: NgxUiLoaderService, private _router: Router) { }
 
   ngOnInit(): void {
-    this.ngxService.start()
     this.fetchPosition();
     this.fetchElection();
     this.loadForm();
@@ -98,8 +97,8 @@ export class AddCandidateComponent implements OnInit {
       reject();
       console.error(error)
     })
-  }).then(()=>{
-    this.ngxService.stop()
+  }).finally(()=>{
+   
   })
 
   

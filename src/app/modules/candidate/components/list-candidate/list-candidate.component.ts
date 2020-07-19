@@ -73,7 +73,7 @@ export class ListCandidateComponent implements OnInit {
 
   editCandidate(id){
    
-    this._router.navigate([`admin/candiate/edit/${id}`])
+    this._router.navigate([`admin/candidate/edit/${id}`])
   }
 
 

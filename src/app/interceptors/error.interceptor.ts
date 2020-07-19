@@ -25,11 +25,14 @@ intercept(
                         this._router.navigate(['/login']);
                         this._authService.logout();
 
+                    }if(err.status == 400){
+                        this._toastr.info( err.error.message, "Oops 🥺", {  timeOut:4000});
+                        
                     }else{
 
                         const error = err.error.message || err.statusText;
                         console.log(error)
-                      // this._toastr.error(error, "Oops 🥺", {  timeOut:4000});
+                      this._toastr.error(error, "Oops 🥺", {  timeOut:4000});
                        //return throwError(error); 
                     }
                 }
