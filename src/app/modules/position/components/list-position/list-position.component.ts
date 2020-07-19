@@ -144,7 +144,7 @@ export class ListPositionComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ViewPositionComponent, {
       width: '600px',
-      height: '300px',
+      height: '400px',
       data: position
     });
 

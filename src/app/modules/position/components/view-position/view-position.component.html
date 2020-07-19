@@ -1,1 +1,40 @@
-<p>view-position works!</p>
+
+<h3 mat-dialog-title>View Position 
+    <span *ngIf="data.stat == 'inactive'" class="badge badge-warning"> {{data.stat}} </span> 
+    <span *ngIf="data.stat == 'active'" class="badge badge-success"> {{data.stat}} </span>
+</h3>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="container">
+    <div  class="row justify-content-center pt-4 ">
+
+        <div class="col-6">
+            <p ><b>Name: </b>{{data.name}}</p>
+        </div>
+
+        <div class="col-6">
+            <p ><b>Created At: </b>{{data.createdAt | date:'mediumDate'}}</p>
+        </div>
+ 
+    </div>
+
+    <div  class="row  pt-4 ">
+
+        <div class="col-6">
+            <p ><b>Cateogory: </b>{{data.cat_name}}</p>
+        </div>
+
+    </div>
+    <div  class="row  pt-4 ">
+        <div class="col-12">
+            <p><b>Description: </b>{{data.description}}</p>
+        </div>
+        </div>
+
+
+
+    
+</div>
+<div mat-dialog-actions class="float-right">
+    <button mat-button (click)="close()" class="float-right">Close</button>
+    
+  </div>

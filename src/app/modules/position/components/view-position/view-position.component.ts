@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-position',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewPositionComponent implements OnInit {
 
-  constructor() { }
+  
+   
+  constructor(
+    public dialogRef: MatDialogRef<ViewPositionComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+   
 
-  ngOnInit(): void {
+  ngOnInit() {
+  
+   //console.log(this.data);
   }
+
+  close(){
+ 
+      this.dialogRef.close();
+    
+   }
 
 }

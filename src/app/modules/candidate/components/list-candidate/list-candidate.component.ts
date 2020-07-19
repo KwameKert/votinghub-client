@@ -109,8 +109,8 @@ export class ListCandidateComponent implements OnInit {
   viewCandidate(candidate){
 
     const dialogRef = this.dialog.open(ViewCandidateComponent, {
-      width: '600px',
-      height: '300px',
+      width: '700px',
+      height: '400px',
       data: candidate
     });
 
