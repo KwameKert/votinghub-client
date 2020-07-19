@@ -25,13 +25,12 @@ export class AddCandidateComponent implements OnInit {
   formData = new FormData();
 
   role: any = '';
-  @Output() newCandidate: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private _fb: FormBuilder, private _crudService: CrudService, private _toastr: ToastrService,  private ngxService: NgxUiLoaderService,) { }
 
   ngOnInit(): void {
     this.ngxService.start()
-    this.fetchCategory();
+    this.fetchPosition();
     this.fetchElection();
     this.loadForm();
    
@@ -47,9 +46,9 @@ export class AddCandidateComponent implements OnInit {
     })
   }
 
-  fetchCategory(){
+  fetchPosition(){
     this.ngxService.start()
-    this._crudService.fetchAll("category").subscribe(data=>{
+    this._crudService.fetchAll("position").subscribe(data=>{
         this.positionOptions = data.data;
         if(this.positionOptions.length == 0){
           this._toastr.info(data.message, "Oh snap!", {  timeOut:2000});
@@ -80,23 +79,29 @@ export class AddCandidateComponent implements OnInit {
 
 
   addCandidate(){
-
-    for(let item of this.candidateForm.value){
-      console.log(item)
-    }
     
- // this.ngxService.start()
-    // this._crudService.addItem(this.candidateForm.value, "candidate").subscribe(data=>{
-    //  this.candidateForm.reset();
-    //   this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
+    for(let key of Object.keys(this.candidateForm.value)){
+      this.formData.append(key,this.candidateForm.value[key] )
+    }
 
-    //   this.newCandidate.emit(true)
-    // }, error=>{
 
-    //   console.error(error)
-    // })
+    this.ngxService.start()
+    return new Promise((resolve,reject)=>{
+    this._crudService.addItem(this.formData, "candidate").subscribe(data=>{
+      
+      this.loadForm();
+      this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
+      resolve();
+      
+    }, error=>{
+      reject();
+      console.error(error)
+    })
+  }).then(()=>{
+    this.ngxService.stop()
+  })
 
-    // this.ngxService.stop()
+    
 
   }
 
@@ -105,7 +110,7 @@ export class AddCandidateComponent implements OnInit {
 
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
-    this.formData.append('image', this.fileData, this.fileData.name);
+    this.formData.append('file', this.fileData, this.fileData.name);
     this.preview();
   }
 

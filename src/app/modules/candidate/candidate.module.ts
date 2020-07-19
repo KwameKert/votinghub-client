@@ -13,6 +13,6 @@ import {SharedModule} from '../shared/shared.module';
     CommonModule, 
     SharedModule
   ],
-  exports: [AddCandidateComponent]
+  exports: [AddCandidateComponent, EditCandidateComponent, ViewCandidateComponent, ListCandidateComponent]
 })
 export class CandidateModule { }

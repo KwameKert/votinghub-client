@@ -1,1 +1,99 @@
-<p>list-candidate works!</p>
+<mat-card class="mat-elevation-z8">
+
+    <mat-card-header>
+        <mat-card-title>All Candidates</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-raised-button color="primary" class="float-right mb-1" routerLink="admin/candidate/add"> <mat-icon>add</mat-icon> New Candidate</button>
+
+      <!-- <button #listCandidates mat-raised-button color="accent" class="float-right mb-1" (click)="listCandidate()" *ngIf="isAddCandidate" > <mat-icon>toc</mat-icon> List Candidate</button> -->
+
+      <div class="row" style="width:100%" >
+
+        <div class="col-md-12" >
+          <div *ngIf="isLoading; else elseBlock" >
+            <ngx-skeleton-loader
+            count="5"
+            [theme]="{
+              width: '90%',
+              'border-radius': '0',
+              height: '15px',
+              'margin-bottom': '10px'
+            }"
+          ></ngx-skeleton-loader>
+          </div>
+       
+    
+           <ng-template #elseBlock>
+             
+            <table mat-table [dataSource]="dataSource"  >
+    
+              
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container>
+            
+            
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Candidate Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}}  </td>
+              </ng-container>
+
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> Position Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.positionName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="election">
+                <th mat-header-cell *matHeaderCellDef> Election Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.electionName}} </td>
+              </ng-container>
+              
+              <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef> Created At  </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'mediumDate'}} </td>
+              </ng-container>
+    
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <button mat-button [matMenuTriggerFor]="belowMenu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #belowMenu="matMenu" yCandidate="below">
+                    <button mat-menu-item (click)="viewCandidate(element)">
+                      <mat-icon>visibility</mat-icon>
+                      <span>View Candidate </span>
+                    </button>
+
+                    <button mat-menu-item (click)="editCandidate(element.id)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit Candidate </span>
+                    </button>
+                    <button mat-menu-item (click)="deleteCandidate(element.id)">
+                      <mat-icon>clear</mat-icon>
+                      <span>Delete Candidate</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+           </ng-template>
+
+        </div>
+
+      </div>
+      
+      <mat-paginator [length]="100" 
+      [pageSize]="10" #paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      
+    </mat-card-content>
+</mat-card>
