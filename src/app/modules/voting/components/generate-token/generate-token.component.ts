@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ParticlesConfig} from '../../../config/particles-config';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { VoterService } from '../../voter.service';
+import { Router } from '@angular/router';
 
 
 declare var particlesJS: any;
@@ -14,7 +16,7 @@ export class GenerateTokenComponent implements OnInit {
 
   indexForm: FormGroup ;
   
-  constructor(private _fb: FormBuilder) { }
+  constructor(private _voterService: VoterService, private _router: Router) { }
   
 
   public ngOnInit(): void {
@@ -33,6 +35,16 @@ export class GenerateTokenComponent implements OnInit {
   }
 
   generateToken(){
+    
+    let indexNumber = this.indexForm.get("indexNumber").value;
+
+    this._voterService.genrateToken(indexNumber).subscribe(result=>{
+
+      this._router.navigate(["htau/candidates"])
+
+    }, error=>{
+      console.error(error)
+    })
 
   }
 
