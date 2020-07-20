@@ -21,7 +21,7 @@ import { ExcerptFilter } from './excerpts.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteItemComponent} from './components/delete-item/delete-item.component';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [ ExcerptFilter, DeleteItemComponent],
@@ -45,7 +45,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatMenuModule,
     MatNativeDateModule,
-    MatStepperModule 
+    MatStepperModule ,
+    MatRadioModule
     
   ],
   providers: [  

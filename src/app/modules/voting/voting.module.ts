@@ -5,10 +5,12 @@ import {VotingRoutingModule} from './voting-routing.module';
 import {ParticlesDirective} from './particles-directive';
 import { SharedModule } from '../shared/shared.module';
 import { FetchCandidatesComponent } from './components/fetch-candidates/fetch-candidates.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [GenerateTokenComponent, ParticlesDirective, FetchCandidatesComponent],
   imports: [
+    MatRadioModule,
     CommonModule,
     VotingRoutingModule,
     SharedModule

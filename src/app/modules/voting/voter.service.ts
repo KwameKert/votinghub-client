@@ -16,6 +16,10 @@ export class VoterService {
   genrateToken(indexNumber: string): Observable<ApiResponse<any>>{
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/generate/${indexNumber}`);
    }
+   
+  fetchCandidates(): Observable<ApiResponse<any>>{
+    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/nominees`);
+   }
 
 
 

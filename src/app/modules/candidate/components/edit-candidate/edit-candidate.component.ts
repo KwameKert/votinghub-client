@@ -44,6 +44,7 @@ export class EditCandidateComponent implements OnInit {
       position_id: new FormControl('',Validators.required),
       election_id: new FormControl('',Validators.required),
       description: '',
+      imageUrl: '',
       stat: ''
     })
   }
@@ -74,6 +75,7 @@ export class EditCandidateComponent implements OnInit {
         position_id: result.position_id,
         election_id: result.election_id,
         description: result.description,
+        imageUrl: result.imageUrl,
         stat: result.stat
       })
       this.previewUrl = result.imageUrl;
@@ -127,6 +129,7 @@ export class EditCandidateComponent implements OnInit {
       this._crudService.updateItem({data: this.formData,module: this.updateUrl})
                        .subscribe(data=>{
               this.loadForm();
+              this.listCandidates();
               this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
       }, error=>{
         console.error(error)

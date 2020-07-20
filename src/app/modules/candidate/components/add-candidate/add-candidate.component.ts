@@ -92,6 +92,7 @@ export class AddCandidateComponent implements OnInit {
     this._crudService.addItem(this.formData, "candidate").subscribe(data=>{
       this.loadForm();
       this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
+      this.listCandidates();
       resolve();
     }, error=>{
       reject();
