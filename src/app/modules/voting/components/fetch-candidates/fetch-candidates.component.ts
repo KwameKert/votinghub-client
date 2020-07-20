@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { ParticlesConfig} from '../../../config/particles-config';
+import { Position } from 'src/app/models/Position';
+import { Candidate } from 'src/app/models/Candidate';
 
 
 declare var particlesJS: any;
@@ -15,8 +17,9 @@ declare var particlesJS: any;
 })
 export class FetchCandidatesComponent implements OnInit {
 
-  voteForm: FormGroup ;
+  voteForm: any = {};
   srcCategory: any;
+  
 
 
   isLinear = false;
@@ -30,18 +33,10 @@ export class FetchCandidatesComponent implements OnInit {
     console.log("here")
     this.invokeParticles();
     this.fetchCandidates();
-    this.loadForm();
    
   }
 
-  loadForm(){
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-  }
+
    invokeParticles(): void {
     particlesJS('particles-js', ParticlesConfig, function() {});
   }
@@ -56,5 +51,10 @@ export class FetchCandidatesComponent implements OnInit {
     })
   }
 
+  addCandidate(position: Position, candidate: Candidate){
+      this.voteForm[position.name] = candidate.name;
+      console.log(this.voteForm)
+
+  }
 
 }

@@ -29,7 +29,7 @@ export class EditPositionComponent implements OnInit {
 
   loadForm(){
     this.positionForm = this._fb.group({
-      name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
       category_id: new FormControl('',Validators.required),
       description: '',
       stat: '',

@@ -2,7 +2,7 @@
 
     <div class="row  justify-content-center " >
        
-      <div class="col-md-10 col-sm-12  mt-5 mb-5">
+      <div class="col-md-10 col-sm-12  mt-5 ">
           <mat-card class="example-card ">
               <mat-card-header class="justify-content-center">
                 <mat-card-title class="text-center">GTUC DECIDES 2020</mat-card-title>
@@ -15,41 +15,38 @@
                   <img src="assets/images/gtuc-src.png" alt="">
                 </div>
 
-
                 <mat-horizontal-stepper [linear]="isLinear" #stepper>
-                    <mat-step [stepControl]="firstFormGroup">
-                      <form [formGroup]="firstFormGroup">
-                        <ng-template matStepLabel>Fill out your name</ng-template>
-                        <mat-radio-button class="example-radio-button" *ngFor="let candidate of srcCategory[0].candidates" [value]="candidate.id">
-                            <img [src]="candidate.imageUrl" class="img-thumbnail " width="300px" height="300px" /> <br>     <h4 class="text-center">{{candidate.name}}</h4>
-                          </mat-radio-button>
-                        <div>
-                          <button mat-button matStepperNext>Next</button>
+                  <div *ngFor="let position of srcCategory">
+                    <mat-step >
+                      <ng-template matStepLabel>{{ position.name}}</ng-template>
+                      <h3 class="text-center">{{ position.name}}</h3>
+                      <div class="row">
+                       
+                        <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let candidate of position.candidates">
+                              
+                          <label>
+                            <input type="radio" name="product" class="card-input-element" (click)="addCandidate(position, candidate)" />
+                  
+                              <div class="card  card-input">
+                               
+                                <div class="card-body">
+                                  <img [src]="candidate.imageUrl" class="img-thumbnail " width="300px" height="300px" />
+                                  <h4 class="text-center mt-2">{{candidate.name}}</h4>
+                                </div>
+                              </div>
+                  
+                          </label>
+                          
                         </div>
-                      </form>
+                    </div>
+
+                    <div class="float-right">
+
+                      <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != srcCategory[0]">Back</button>
+                      <button mat-raised-button matStepperNext  color="primary">Next</button>
+                    </div>
                     </mat-step>
-                    <mat-step [stepControl]="secondFormGroup">
-                      <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>Fill out your address</ng-template>
-                        <mat-form-field>
-                          <mat-label>Address</mat-label>
-                          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                                 required>
-                        </mat-form-field>
-                        <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                          <button mat-button matStepperNext>Next</button>
-                        </div>
-                      </form>
-                    </mat-step>
-                    <mat-step>
-                      <ng-template matStepLabel>Done</ng-template>
-                      <p>You are now done.</p>
-                      <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
-                      </div>
-                    </mat-step>
+                  </div>
                   </mat-horizontal-stepper>
                 
 
