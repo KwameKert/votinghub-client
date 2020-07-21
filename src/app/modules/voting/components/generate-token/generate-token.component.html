@@ -15,20 +15,42 @@
                 <img src="assets/images/gtuc-src.png" alt="">
               </div>
               
-              <form class="text-center" [formGroup]="indexForm" (ngSubmit)="generateToken()">
+              <div [ngClass]="showIndexForm">
+                <form class="text-center" [formGroup]="indexForm" (ngSubmit)="generateToken()">
   
-                <mat-form-field appearance="outline" style="width:300px"  >
-                    <mat-label>Index Number</mat-label>
-                    <input matInput placeholder="040854116"  formControlName="indexNumber" >
-                    <mat-error *ngIf="indexForm.get('indexNumber').invalid"> Invalid input </mat-error>
-                  </mat-form-field>
+                  <mat-form-field appearance="outline" style="width:300px"  >
+                      <mat-label>Index Number</mat-label>
+                      <input matInput placeholder="040854116"  formControlName="indexNumber" >
+                      <mat-error *ngIf="indexForm.get('indexNumber').invalid"> Invalid input </mat-error>
+                    </mat-form-field>
+  
+                    <div align="center">
+                      <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!indexForm.valid">Generate Token</button>
+                    </div>
+  
+                </form>
+              </div>
 
-                  <div align="center">
-                    <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!indexForm.valid">Login</button>
+              <div [ngClass]="showTokenForm">
+                <form class="text-center" [formGroup]="tokenForm" (ngSubmit)="loginToVote()">
+  
+                  <div class="alert alert-info">
+                    <p >Token sent to <b>2342342334234</b>     <a href="#">Resend token</a> </p>
                   </div>
+                  <mat-form-field appearance="outline" style="width:300px"  >
+                      <mat-label>Token</mat-label>
+                      <input matInput placeholder=""  formControlName="token" >
+                      <mat-error *ngIf="tokenForm.get('token').invalid"> Invalid input </mat-error>
+                    </mat-form-field>
+  
+                    <div align="center">
+                      <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!tokenForm.valid">Login</button>
+                    </div>
+  
+                </form>
 
-
-                  </form>
+              </div>
+         
                 
                 
               

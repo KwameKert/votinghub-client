@@ -23,9 +23,9 @@
                       <div class="row justify-content-center">
                        
                         <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let candidate of position.candidates">
-                              
+                          <fieldset id="{{position.name}}">
                           <label>
-                            <input type="radio" name="product" class="card-input-element" (click)="addCandidate(position, candidate)" />
+                            <input type="radio" name="{{position.name}}" class="card-input-element" (click)="addCandidate(position, candidate)" />
                   
                               <div class="card  card-input">
                                
@@ -36,6 +36,7 @@
                               </div>
                   
                           </label>
+                          </fieldset>
                           
                         </div>
                     </div>
@@ -44,7 +45,7 @@
 
                       <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != srcCategory[0]">Back</button>
                       <button mat-raised-button matStepperNext  color="primary" *ngIf="position != srcCategory[srcCategory.length -1]">Next</button>
-                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1]" (click)="submitResults()">Submit</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1]" (click)="viewResults()">Submit</button>
                     </div>
                     </mat-step>
                   </div>

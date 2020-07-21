@@ -15,20 +15,31 @@ declare var particlesJS: any;
 export class GenerateTokenComponent implements OnInit {
 
   indexForm: FormGroup ;
+  tokenForm: FormGroup ;
+  showIndexForm: string;
+  showTokenForm: string = "d-none";
   
   constructor(private _voterService: VoterService, private _router: Router) { }
   
 
   public ngOnInit(): void {
     this.invokeParticles();
-    this.loadForm();
+    this.loadIndexForm();
+    this.loadTokenForm();
   }
 
-  loadForm(){
+  loadIndexForm(){
     this.indexForm = new FormGroup({
       indexNumber: new FormControl("", [Validators.maxLength(10),Validators.required, Validators.pattern("^[a-zA-Z0-9]*$")])
     })
   }
+
+  loadTokenForm(){
+    this.tokenForm = new FormGroup({
+      token: new FormControl("", [Validators.maxLength(10),Validators.required, Validators.pattern("^[a-zA-Z0-9]*$")])
+    })
+  }
+
 
   public invokeParticles(): void {
     particlesJS('particles-js', ParticlesConfig, function() {});
@@ -40,12 +51,19 @@ export class GenerateTokenComponent implements OnInit {
 
     this._voterService.genrateToken(indexNumber).subscribe(result=>{
 
-      this._router.navigate(["htau/candidates"])
+      console.log(result.data)
+      this.showIndexForm= "d-none";
+      this.showTokenForm = "d-block";
+     // this._router.navigate([`htau/candidates/${result.data}`])
 
     }, error=>{
       console.error(error)
     })
 
+  }
+
+  loginToVote(){
+    
   }
 
 

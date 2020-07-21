@@ -18,16 +18,16 @@ export class ViewResultsComponent implements OnInit {
   ngOnInit() {
    
     this.candidates = Object.entries(this.data)
-    console.log(this.candidates)
-  
-   //console.log(this.data);
   }
 
   close(){
  
       this.dialogRef.close();
-    
    }
+
+   castVote(){
+    this.dialogRef.close(true);
+  }
 
 
 }

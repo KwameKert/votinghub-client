@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VoterService } from '../../voter.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { ParticlesConfig} from '../../../config/particles-config';
@@ -20,23 +20,30 @@ declare var particlesJS: any;
 })
 export class FetchCandidatesComponent implements OnInit {
 
-  voteForm: any = {};
+  token: string ;
+  candidatesName: any = {};
+  candidatesId: any ={};
   srcCategory: any;
   
-
-
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  voteForm: FormGroup;
 
-  constructor(private _voterService: VoterService, private _router: Router, private _formBuilder: FormBuilder,  public dialog: MatDialog,) { }
+  constructor(private _voterService: VoterService, private _router: Router, private _formBuilder: FormBuilder,  public dialog: MatDialog,private route: ActivatedRoute) { }
   
 
    ngOnInit(): void {
-    console.log("here")
+    this.token = this.route.snapshot.paramMap.get('token');
+    console.log(this.token)
     this.invokeParticles();
     this.fetchCandidates();
-   
+   this.loadForm();
+  }
+
+  loadForm(){
+    this.voteForm = this._formBuilder.group({
+      token: '',
+      candidates: ''
+    })
   }
 
 
@@ -55,20 +62,42 @@ export class FetchCandidatesComponent implements OnInit {
   }
 
   addCandidate(position: Position, candidate: Candidate){
-      this.voteForm[position.name] = candidate.name;
-      console.log(this.voteForm)
+      this.candidatesName[position.name] = candidate.name;
+      this.candidatesId[position.name] = candidate.id;
+      console.log(this.candidatesName)
   }
 
-
   submitResults(){
+
+    let candidateArray: Array<number> = [];
+
+    for(let candidate in this.candidatesId){
+      candidateArray.push(this.candidatesId[candidate])
+    }
+
+    this.voteForm.patchValue({
+      token: this.token,
+      candidates: candidateArray
+    })
+
+    this._voterService.castVote(this.voteForm.value).subscribe(result=>{
+      console.log(result.data);
+    }, error=>{
+      console.error(error)
+    })
+    
+  }
+
+  viewResults(){
 
     const dialogRef = this.dialog.open(ViewResultsComponent, {
       width: '600px',
       height: '400px',
-      data: this.voteForm
+      data: this.candidatesName
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.submitResults();
     }, error=>{
       // this._toastr.error("Oops an error. 🥺","",{
       //   timeOut:2000
