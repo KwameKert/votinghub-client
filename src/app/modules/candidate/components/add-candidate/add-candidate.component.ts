@@ -38,7 +38,7 @@ export class AddCandidateComponent implements OnInit {
 
   loadForm(){
     this.candidateForm = this._fb.group({
-      name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(40)]),
       position_id: new FormControl('',Validators.required),
       election_id: new FormControl('',Validators.required),
       description: '',
@@ -88,19 +88,12 @@ export class AddCandidateComponent implements OnInit {
     }
 
     this.ngxService.start()
-    return new Promise((resolve,reject)=>{
     this._crudService.addItem(this.formData, "candidate").subscribe(data=>{
-      this.loadForm();
       this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
       this.listCandidates();
-      resolve();
     }, error=>{
-      reject();
       console.error(error)
-    })
-  }).finally(()=>{
-   
-  })
+    }).add(()=> this.ngxService.stop())
 
   
   }

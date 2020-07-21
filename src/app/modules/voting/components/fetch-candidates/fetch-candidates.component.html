@@ -20,7 +20,7 @@
                     <mat-step >
                       <ng-template matStepLabel>{{ position.name}}</ng-template>
                       <h3 class="text-center">{{ position.name}}</h3>
-                      <div class="row">
+                      <div class="row justify-content-center">
                        
                         <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let candidate of position.candidates">
                               
@@ -43,7 +43,8 @@
                     <div class="float-right">
 
                       <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != srcCategory[0]">Back</button>
-                      <button mat-raised-button matStepperNext  color="primary">Next</button>
+                      <button mat-raised-button matStepperNext  color="primary" *ngIf="position != srcCategory[srcCategory.length -1]">Next</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1]" (click)="submitResults()">Submit</button>
                     </div>
                     </mat-step>
                   </div>

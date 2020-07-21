@@ -1,0 +1,18 @@
+
+
+<h3 mat-dialog-title>Submit Results 
+</h3>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="container">
+
+<div *ngFor="let candidate of candidates">
+    <p> <b>{{candidate[0]}} :</b>  {{candidate[1]}}</p>
+</div>
+
+
+    
+</div>
+<div mat-dialog-actions class="float-right">
+    <button mat-button (click)="close()" class="float-right">Close</button>
+    
+  </div>

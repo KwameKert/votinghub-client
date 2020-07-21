@@ -8,6 +8,8 @@ import { DeleteItemComponent } from '../../../shared/components/delete-item/dele
 import { CrudService } from '../../../shared/service/crud.service';
 
 import { ViewPositionComponent} from '../view-position/view-position.component';
+import { Position } from 'src/app/models/Position';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-list-position',
@@ -56,8 +58,8 @@ export class ListPositionComponent implements OnInit {
           timeOut:2000
         })      
       }else{
-        this.dataSource = data.data;
-        this.dataSource.paginator = this.paginator;       
+        this.dataSource = new MatTableDataSource<Position>(data.data);
+        this.dataSource.paginator = this.paginator;        
       }
  
       this.isLoading = false;

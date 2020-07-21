@@ -40,7 +40,7 @@ export class EditCandidateComponent implements OnInit {
   loadForm(){
     this.candidateForm = this._fb.group({
       id: '',
-      name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(40)]),
       position_id: new FormControl('',Validators.required),
       election_id: new FormControl('',Validators.required),
       description: '',
