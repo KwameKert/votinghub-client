@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ParticlesConfig} from '../../../config/particles-config';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { VoterService } from '../../voter.service';
 import { Router } from '@angular/router';
+import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
 
 
 declare var particlesJS: any;
@@ -13,11 +14,14 @@ declare var particlesJS: any;
   styleUrls: ['./generate-token.component.scss']
 })
 export class GenerateTokenComponent implements OnInit {
-
+  @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
+  token: string ;
   indexForm: FormGroup ;
   tokenForm: FormGroup ;
   showIndexForm: string;
   showTokenForm: string = "d-none";
+  tokenTimeout: Boolean = true;
+  config: CountdownConfig = { leftTime: 10, demand: true, format: `mm:ss` };
   
   constructor(private _voterService: VoterService, private _router: Router) { }
   
@@ -51,9 +55,11 @@ export class GenerateTokenComponent implements OnInit {
 
     this._voterService.genrateToken(indexNumber).subscribe(result=>{
 
-      console.log(result.data)
+     // this.token = result.data
       this.showIndexForm= "d-none";
       this.showTokenForm = "d-block";
+      this.countdown.begin();
+      console.log(this.tokenTimeout)
      // this._router.navigate([`htau/candidates/${result.data}`])
 
     }, error=>{
@@ -63,8 +69,17 @@ export class GenerateTokenComponent implements OnInit {
   }
 
   loginToVote(){
-    
+    let token = this.tokenForm.value.token;
+    // this._voterService.verifyToken(token).subscribe(result=>{
+    //   console.log(result)
+    // }, error=>{
+
+    // })
   }
 
+  handleEvent(event){
+    console.log("done")
+    this.tokenTimeout = !this.tokenTimeout
+  }
 
 }

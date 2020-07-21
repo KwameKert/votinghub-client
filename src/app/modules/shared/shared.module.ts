@@ -46,7 +46,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatMenuModule,
     MatNativeDateModule,
     MatStepperModule ,
-    MatRadioModule
+    MatRadioModule,
     
   ],
   providers: [  
@@ -72,7 +72,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatFormFieldModule,
     MatMenuModule,
     MatNativeDateModule,
-    MatStepperModule
+    MatStepperModule,
   ],
   entryComponents: []
 })

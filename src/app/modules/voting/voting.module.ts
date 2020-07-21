@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FetchCandidatesComponent } from './components/fetch-candidates/fetch-candidates.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ViewResultsComponent } from './components/view-results/view-results.component';
+import { AvatarModule } from 'ngx-avatar';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [GenerateTokenComponent, ParticlesDirective, FetchCandidatesComponent, ViewResultsComponent],
@@ -14,7 +16,9 @@ import { ViewResultsComponent } from './components/view-results/view-results.com
     MatRadioModule,
     CommonModule,
     VotingRoutingModule,
-    SharedModule
+    AvatarModule,
+    SharedModule,
+    CountdownModule 
   ]
 })
 export class VotingModule { }

@@ -34,7 +34,7 @@ export class ListUserComponent implements OnInit {
 
 
   allowedColumns: any = [
-    {def:'id', slideShow: false},
+    {def:'pic', slideShow: false},
     {def: 'username', slideShow: true},
     {def: 'full name', slideShow: false},
     {def: 'email',  slideShow: true},

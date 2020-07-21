@@ -17,7 +17,6 @@
               
               <div [ngClass]="showIndexForm">
                 <form class="text-center" [formGroup]="indexForm" (ngSubmit)="generateToken()">
-  
                   <mat-form-field appearance="outline" style="width:300px"  >
                       <mat-label>Index Number</mat-label>
                       <input matInput placeholder="040854116"  formControlName="indexNumber" >
@@ -35,7 +34,8 @@
                 <form class="text-center" [formGroup]="tokenForm" (ngSubmit)="loginToVote()">
   
                   <div class="alert alert-info">
-                    <p >Token sent to <b>2342342334234</b>     <a href="#">Resend token</a> </p>
+                    <p >Token sent to <b>2342342334234 </b>  <br>  Resend in token in <countdown [config]="config" (event)="handleEvent($event)" #cd></countdown> <br>
+                      <button class="btn btn-outline-info btn-sm" [disabled]="!tokenTimeout"> Generate Token</button></p>
                   </div>
                   <mat-form-field appearance="outline" style="width:300px"  >
                       <mat-label>Token</mat-label>

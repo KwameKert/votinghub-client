@@ -22,7 +22,8 @@ import { ErrorInterceptor, TokenInterceptor} from './interceptors';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.component';
 
-
+import { AvatarModule } from 'ngx-avatar';
+const avatarColors = ['#FFB6C1', '#2c3e50', '#95a5a6', '#f39c12', '#1abc9c'];
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,9 @@ import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.com
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    AvatarModule.forRoot({
+      colors: avatarColors
+    }),
     MatToolbarModule,
     MatIconModule,
     MatDividerModule,
@@ -48,7 +52,7 @@ import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.com
     MatButtonModule,
     MatListModule,
     NgxUiLoaderModule,
-    MatSidenavModule,  
+    MatSidenavModule,
     ToastrModule.forRoot(), 
   ],
   providers: [
