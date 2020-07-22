@@ -9,6 +9,7 @@ import { Candidate } from 'src/app/models/Candidate';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewResultsComponent } from '../view-results/view-results.component';
 import { timeStamp } from 'console';
+import { ToastrService } from 'ngx-toastr';
 
 
 declare var particlesJS: any;
@@ -21,6 +22,8 @@ declare var particlesJS: any;
 export class FetchCandidatesComponent implements OnInit {
 
   token: string ;
+  type: string;
+  isLoading: boolean = false;
   candidatesName: any = {};
   candidatesId: any ={};
   srcCategory: any;
@@ -28,11 +31,13 @@ export class FetchCandidatesComponent implements OnInit {
   isLinear = false;
   voteForm: FormGroup;
 
-  constructor(private _voterService: VoterService, private _router: Router, private _formBuilder: FormBuilder,  public dialog: MatDialog,private route: ActivatedRoute) { }
+  constructor(private _voterService: VoterService, private _router: Router, private _formBuilder: FormBuilder,  public dialog: MatDialog,private route: ActivatedRoute, private _toastr: ToastrService) { }
   
 
    ngOnInit(): void {
     this.token = this.route.snapshot.paramMap.get('token');
+    this.type = this.route.snapshot.paramMap.get('nominees');
+
     console.log(this.token)
     this.invokeParticles();
     this.fetchCandidates();
@@ -53,11 +58,14 @@ export class FetchCandidatesComponent implements OnInit {
 
   fetchCandidates(){
 
-    this._voterService.fetchCandidates().subscribe(result=>{
+    this.isLoading = true;
+    this._voterService.fetchCandidates(this.type,this.token).subscribe(result=>{
         this.srcCategory = result.data;
         console.log(this.srcCategory)
     }, error=>{
       console.error(error)
+    }).add(()=>{
+      this.isLoading = false
     })
   }
 
@@ -82,7 +90,14 @@ export class FetchCandidatesComponent implements OnInit {
 
     this._voterService.castVote(this.voteForm.value).subscribe(result=>{
       console.log(result.data);
+
+      this._toastr.success("Vote casted  😊 ","",{
+          timeOut:2000
+        })
+      this._router.navigate(["htau"])
+      
     }, error=>{
+      this._router.navigate(["htau"])
       console.error(error)
     })
     

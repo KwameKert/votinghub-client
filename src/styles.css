@@ -3,4 +3,11 @@
 @import '~ngx-toastr/toastr';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color:  aliceblue; overflow-x: hidden; }
+canvas {
+    margin-top: -400px;
+    display:block;
+    background-color: #07294d;
+    position: fixed;
+    z-index: -1;
+}
 

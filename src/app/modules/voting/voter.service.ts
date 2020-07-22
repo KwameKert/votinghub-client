@@ -9,6 +9,8 @@ import { ApiResponse } from '../../models/ApiResponse';
 })
 export class VoterService {
 
+  
+
   private _baseUrl :String = environment.api_host;
   constructor(private _httpClient: HttpClient) { }
 
@@ -25,8 +27,8 @@ export class VoterService {
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/verify/${token}`);
    }
    
-  fetchCandidates(): Observable<ApiResponse<any>>{
-    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/nominees`);
+  fetchCandidates(type: string, token: string): Observable<ApiResponse<any>>{
+    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/${type}/${token}`);
    }
 
 

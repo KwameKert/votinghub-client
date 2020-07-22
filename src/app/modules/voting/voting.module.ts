@@ -9,6 +9,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ViewResultsComponent } from './components/view-results/view-results.component';
 import { AvatarModule } from 'ngx-avatar';
 import { CountdownModule } from 'ngx-countdown';
+import { PreloaderComponent } from '../shared/preloader/preloader.component';
+
+
 
 @NgModule({
   declarations: [GenerateTokenComponent, ParticlesDirective, FetchCandidatesComponent, ViewResultsComponent],

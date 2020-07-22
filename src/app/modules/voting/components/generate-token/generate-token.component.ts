@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { VoterService } from '../../voter.service';
 import { Router } from '@angular/router';
 import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 declare var particlesJS: any;
@@ -21,9 +22,11 @@ export class GenerateTokenComponent implements OnInit {
   showIndexForm: string;
   showTokenForm: string = "d-none";
   tokenTimeout: Boolean = true;
-  config: CountdownConfig = { leftTime: 10, demand: true, format: `mm:ss` };
+  isLoading: boolean = false;
+  destination: string = '';
+  config: CountdownConfig = { leftTime: 120, demand: true, format: `mm:ss` };
   
-  constructor(private _voterService: VoterService, private _router: Router) { }
+  constructor(private _voterService: VoterService, private _router: Router, private ngxService: NgxUiLoaderService) { }
   
 
   public ngOnInit(): void {
@@ -52,10 +55,11 @@ export class GenerateTokenComponent implements OnInit {
   generateToken(){
     
     let indexNumber = this.indexForm.get("indexNumber").value;
-
+   // this.isLoading = true;
+    this.ngxService.start();
     this._voterService.genrateToken(indexNumber).subscribe(result=>{
 
-     // this.token = result.data
+      this.destination = result.data
       this.showIndexForm= "d-none";
       this.showTokenForm = "d-block";
       this.countdown.begin();
@@ -64,17 +68,21 @@ export class GenerateTokenComponent implements OnInit {
 
     }, error=>{
       console.error(error)
+    }).add(()=>{
+      this.ngxService.stop();
     })
 
   }
 
   loginToVote(){
+    this.isLoading = true;
     let token = this.tokenForm.value.token;
-    // this._voterService.verifyToken(token).subscribe(result=>{
-    //   console.log(result)
-    // }, error=>{
+  
+    this._voterService.verifyToken(token).subscribe(result=>{
+      this._router.navigate([`htau/candidates/${token}/nominees`])
+    }, error=>{
 
-    // })
+    })
   }
 
   handleEvent(event){

@@ -1,9 +1,13 @@
-<div id="particles-js">
+<app-preloader *ngIf="isLoading"></app-preloader>
+ 
+
+<div id="particles-js" > 
+
 
   <div class="row  justify-content-center " >
      
-    <div class="col-md-6 col-sm-12  mt-5">
-        <mat-card class="example-card test">
+    <div class="col-md-6 col-sm-12  mt-5  ">
+        <mat-card class="example-card mat-elevation-z8">
             <mat-card-header class="justify-content-center">
               <mat-card-title class="text-center">GTUC DECIDES 2020</mat-card-title>
             </mat-card-header>
@@ -33,8 +37,8 @@
               <div [ngClass]="showTokenForm">
                 <form class="text-center" [formGroup]="tokenForm" (ngSubmit)="loginToVote()">
   
-                  <div class="alert alert-info">
-                    <p >Token sent to <b>2342342334234 </b>  <br>  Resend in token in <countdown [config]="config" (event)="handleEvent($event)" #cd></countdown> <br>
+                  <div class="alert alert-info mt-2">
+                    <p >Token sent to <b>{{ destination }} </b>  <br>  Resend in token in <countdown [config]="config" (event)="handleEvent($event)" #cd></countdown> <br>
                       <button class="btn btn-outline-info btn-sm" [disabled]="!tokenTimeout"> Generate Token</button></p>
                   </div>
                   <mat-form-field appearance="outline" style="width:300px"  >

@@ -22,9 +22,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { DeleteItemComponent} from './components/delete-item/delete-item.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
+import { PreloaderComponent } from './preloader/preloader.component';
 
 @NgModule({
-  declarations: [ ExcerptFilter, DeleteItemComponent],
+  declarations: [ ExcerptFilter, DeleteItemComponent, PreloaderComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -73,6 +74,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatMenuModule,
     MatNativeDateModule,
     MatStepperModule,
+    PreloaderComponent
   ],
   entryComponents: []
 })

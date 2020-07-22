@@ -1,3 +1,7 @@
+<app-preloader *ngIf="isLoading; else elseBlock"></app-preloader>
+
+<ng-template #elseBlock>
+
 <div class="login-background ">
 
     <div class="row  justify-content-center" >
@@ -40,3 +44,4 @@
  
   
   </div>
+  </ng-template>
