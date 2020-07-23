@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewResultsComponent } from '../view-results/view-results.component';
 import { timeStamp } from 'console';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/models/Category';
 
 
 declare var particlesJS: any;
@@ -26,7 +27,12 @@ export class FetchCandidatesComponent implements OnInit {
   isLoading: boolean = false;
   candidatesName: any = {};
   candidatesId: any ={};
+  selectedCadidates: any = {};
   srcCategory: any;
+  facultyCategory: any ;
+  internationalCategory: any ;
+  srcStepper: string = "";
+  facultyStepper: string = "d-none";
   
   isLinear = false;
   voteForm: FormGroup;
@@ -60,7 +66,23 @@ export class FetchCandidatesComponent implements OnInit {
 
     this.isLoading = true;
     this._voterService.fetchCandidates(this.type,this.token).subscribe(result=>{
-        this.srcCategory = result.data;
+        let nomineeList = result.data;
+
+        this.srcCategory = nomineeList.filter((nominee)=>{
+          return nominee.cat_name = "src"
+        })
+
+        this.facultyCategory = nomineeList.filter((nominee)=>{
+          if(nominee.cat_name == "BSA" ||  nominee.cat_name == "ESA" ||nominee.cat_name == "ACS" ){
+            return nominee;
+          }
+        })
+
+        this.internationalCategory  = nomineeList.filter((nominee)=>{
+          return nominee.cat_name = "ISA"
+        })
+
+      
         console.log(this.srcCategory)
     }, error=>{
       console.error(error)
@@ -79,8 +101,8 @@ export class FetchCandidatesComponent implements OnInit {
 
     let candidateArray: Array<number> = [];
 
-    for(let candidate in this.candidatesId){
-      candidateArray.push(this.candidatesId[candidate])
+    for(let candidate in this.selectedCadidates){
+      candidateArray.push(this.selectedCadidates[candidate])
     }
 
     this.voteForm.patchValue({
@@ -112,7 +134,9 @@ export class FetchCandidatesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.submitResults();
+      //this.submitResults();
+      // this.selectedCadidates = {...this.candidatesId}
+      // this.candidatesName = {};
     }, error=>{
       // this._toastr.error("Oops an error. 🥺","",{
       //   timeOut:2000
