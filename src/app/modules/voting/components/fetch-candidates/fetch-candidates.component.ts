@@ -11,6 +11,7 @@ import { ViewResultsComponent } from '../view-results/view-results.component';
 import { timeStamp } from 'console';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/Category';
+import { toTypeScript } from '@angular/compiler';
 
 
 declare var particlesJS: any;
@@ -29,10 +30,13 @@ export class FetchCandidatesComponent implements OnInit {
   candidatesId: any ={};
   selectedCadidates: any = {};
   srcCategory: any;
+  isInternational: boolean;
   facultyCategory: any ;
-  internationalCategory: any ;
+  internationalCategory: boolean = false ;
   srcStepper: string = "";
+  logoUrl = "assets/images/gtuc-src.png";
   facultyStepper: string = "d-none";
+  internationalStepper: string = "d-none";
   
   isLinear = false;
   voteForm: FormGroup;
@@ -67,9 +71,10 @@ export class FetchCandidatesComponent implements OnInit {
     this.isLoading = true;
     this._voterService.fetchCandidates(this.type,this.token).subscribe(result=>{
         let nomineeList = result.data;
+        console.log("nominee", nomineeList)
 
         this.srcCategory = nomineeList.filter((nominee)=>{
-          return nominee.cat_name = "src"
+          return nominee.cat_name == "SRC"
         })
 
         this.facultyCategory = nomineeList.filter((nominee)=>{
@@ -78,12 +83,14 @@ export class FetchCandidatesComponent implements OnInit {
           }
         })
 
+        console.log("src", this.srcCategory)
+        console.log("faculty", this.facultyCategory)
+
         this.internationalCategory  = nomineeList.filter((nominee)=>{
-          return nominee.cat_name = "ISA"
+          return nominee.cat_name == "ISA"
         })
 
-      
-        console.log(this.srcCategory)
+
     }, error=>{
       console.error(error)
     }).add(()=>{
@@ -110,22 +117,26 @@ export class FetchCandidatesComponent implements OnInit {
       candidates: candidateArray
     })
 
-    this._voterService.castVote(this.voteForm.value).subscribe(result=>{
-      console.log(result.data);
+    console.log(this.voteForm.value)
 
-      this._toastr.success("Vote casted  😊 ","",{
-          timeOut:2000
-        })
-      this._router.navigate(["htau"])
+    // this._voterService.castVote(this.voteForm.value).subscribe(result=>{
+    //   console.log(result.data);
+
+    //   this._toastr.success("Vote casted  😊 ","",{
+    //       timeOut:2000
+    //     })
+    //   this._router.navigate(["htau"])
       
-    }, error=>{
-      this._router.navigate(["htau"])
-      console.error(error)
-    })
+    // }, error=>{
+    //   this._router.navigate(["htau"])
+    //   console.error(error)
+    // })
     
   }
 
-  viewResults(){
+
+
+  viewResults(persistData: boolean,  toStepper: string){
 
     const dialogRef = this.dialog.open(ViewResultsComponent, {
       width: '600px',
@@ -135,13 +146,45 @@ export class FetchCandidatesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       //this.submitResults();
-      // this.selectedCadidates = {...this.candidatesId}
-      // this.candidatesName = {};
+      if(result){
+        if(persistData){
+          this.selectedCadidates = {...this.candidatesId}
+          this.submitResults();
+        }else{
+          this.selectedCadidates = {...this.candidatesId}
+          this.candidatesName = {};
+          this.switchForms(toStepper)
+        }
+      }
+      
     }, error=>{
       // this._toastr.error("Oops an error. 🥺","",{
       //   timeOut:2000
       // })
     });
 
+  }
+
+  switchCategoryLogo(faculty: string){
+    console.log(faculty)
+    if(faculty == "ESA"){
+      this.logoUrl =  "assets/images/esa.png";
+    }else if(faculty == "BSA"){
+      this.logoUrl =  "assets/images/bsa.png";
+    }else if(faculty == "ISA"){
+      this.logoUrl =  "assets/images/isa.png";
+    }
+  }
+
+  switchForms(toStepper: string){
+    if(toStepper == "facultyStepper"){
+      this.srcStepper = "d-none";
+      this.facultyStepper = "d-block";
+      this.switchCategoryLogo(this.facultyCategory[0].cat_name)
+    }else if( toStepper == "internationalStepper"){
+      this.facultyStepper  = "d-none";
+      this.internationalStepper = "d-block";
+      this.switchCategoryLogo(this.facultyCategory[0].cat_name)
+    }
   }
 }

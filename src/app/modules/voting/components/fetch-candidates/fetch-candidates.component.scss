@@ -1,6 +1,7 @@
 #particles-js {
     
     background-color: #07294d;
+    width: 100%;
   }
   
   ::ng-deep.mat-form-field-underline {
@@ -11,6 +12,7 @@
   html, body {
     height: 100%;
     margin: 0;
+    overflow-x: hidden;
     padding:0;
   }
   

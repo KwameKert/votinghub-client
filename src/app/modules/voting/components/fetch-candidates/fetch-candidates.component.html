@@ -1,10 +1,11 @@
 <app-preloader *ngIf="isLoading"></app-preloader>
 
-<div id="particles-js">
+<div class="holder">
+  <div id="particles-js">
 
     <div class="row  justify-content-center " >
        
-      <div class="col-md-10 col-sm-12  mt-5 ">
+      <div class="col-md-10 col-sm-12  mt-2 ">
           <mat-card class="example-card ">
               <mat-card-header class="justify-content-center">
                 <mat-card-title class="text-center">GTUC DECIDES 2020</mat-card-title>
@@ -13,8 +14,8 @@
           
               <mat-card-content>
   
-                <div class="row justify-content-center mt-3">
-                  <img src="assets/images/gtuc-src.png" alt="">
+                <div class="row justify-content-center mt-1">
+                  <img [src]="logoUrl" alt="" style="width:15%">
                 </div>
 
                 <mat-horizontal-stepper [linear]="isLinear" #stepper [ngClass]="srcStepper">
@@ -47,15 +48,13 @@
 
                       <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != srcCategory[0]">Back</button>
                       <button mat-raised-button matStepperNext  color="primary" *ngIf="position != srcCategory[srcCategory.length -1]">Next</button>
-                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1]" (click)="viewResults()">Submit</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1]" (click)="viewResults(false,  'facultyStepper')">Continue</button>
                     </div>
                     </mat-step>
                   </div>
                   </mat-horizontal-stepper>
-                
 
-
-                  <mat-horizontal-stepper [linear]="isLinear" #stepper [ngClass]="facultyStepper">
+                 <mat-horizontal-stepper [linear]="isLinear" #stepper [ngClass]="facultyStepper">
                     <div *ngFor="let position of facultyCategory">
                       <mat-step >
                         <ng-template matStepLabel>{{ position.name}}</ng-template>
@@ -83,15 +82,15 @@
   
                       <div class="float-right">
   
-                        <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != srcCategory[0]">Back</button>
-                        <button mat-raised-button matStepperNext  color="primary" *ngIf="position != srcCategory[srcCategory.length -1]">Next</button>
-                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1]" (click)="viewResults()">Submit</button>
+                        <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != facultyCategory[0]">Back</button>
+                        <button mat-raised-button matStepperNext  color="primary" *ngIf="position != facultyCategory[facultyCategory.length -1]">Next</button>
+                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf=" !isInternational" (click)="viewResults(true, 'none')">Submit</button>
+                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == facultyCategory[facultyCategory.length -1] && isInternational" (click)="viewResults(false, 'internationalStepper')">Continue</button>
                       </div>
                       </mat-step>
                     </div>
                     </mat-horizontal-stepper>
-                  
-                  
+                
                 
               </mat-card-content>
             
@@ -102,3 +101,4 @@
   
   </div>
   
+</div>
