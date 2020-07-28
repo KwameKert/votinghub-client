@@ -22,6 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { DeleteItemComponent} from './components/delete-item/delete-item.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
+
 import { PreloaderComponent } from './preloader/preloader.component';
 
 @NgModule({
@@ -48,6 +50,7 @@ import { PreloaderComponent } from './preloader/preloader.component';
     MatNativeDateModule,
     MatStepperModule ,
     MatRadioModule,
+    MatTabsModule
     
   ],
   providers: [  
@@ -74,7 +77,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     MatMenuModule,
     MatNativeDateModule,
     MatStepperModule,
-    PreloaderComponent
+    PreloaderComponent,
+    MatTabsModule
   ],
   entryComponents: []
 })

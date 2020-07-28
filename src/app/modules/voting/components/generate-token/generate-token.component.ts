@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { ParticlesConfig} from '../../../config/particles-config';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -15,7 +15,11 @@ declare var particlesJS: any;
   styleUrls: ['./generate-token.component.scss']
 })
 export class GenerateTokenComponent implements OnInit {
+
   @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
+  @ViewChild('message', {static: false}) message : ElementRef<HTMLElement>;
+  phoneNumber: string;
+  emailAccount: string;
   token: string ;
   indexForm: FormGroup ;
   tokenForm: FormGroup ;
@@ -55,22 +59,23 @@ export class GenerateTokenComponent implements OnInit {
   generateToken(){
     
     let indexNumber = this.indexForm.get("indexNumber").value;
+    let el: HTMLElement = this.message.nativeElement;
+    el.click();
+    
    // this.isLoading = true;
-    this.ngxService.start();
-    this._voterService.genrateToken(indexNumber).subscribe(result=>{
+    // this.ngxService.start();
+    // this._voterService.genrateToken(indexNumber).subscribe(result=>{
 
-      this.destination = result.data
-      this.showIndexForm= "d-none";
-      this.showTokenForm = "d-block";
-      this.countdown.begin();
-      console.log(this.tokenTimeout)
-     // this._router.navigate([`htau/candidates/${result.data}`])
-
-    }, error=>{
-      console.error(error)
-    }).add(()=>{
-      this.ngxService.stop();
-    })
+    //   this.destination = result.data
+    //   this.showIndexForm= "d-none";
+    //   this.showTokenForm = "d-block";
+    //   this.countdown.begin();
+    //   console.log(this.tokenTimeout)
+    // }, error=>{
+    //   console.error(error)
+    // }).add(()=>{
+    //   this.ngxService.stop();
+    // })
 
   }
 

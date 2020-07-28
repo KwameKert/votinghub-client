@@ -5,7 +5,7 @@
 
 
   <div class="row  justify-content-center " >
-     
+ 
     <div class="col-md-6 col-sm-12  mt-5  ">
         <mat-card class="example-card mat-elevation-z8">
             <mat-card-header class="justify-content-center">
@@ -15,49 +15,79 @@
         
             <mat-card-content>
 
-              <div class="row justify-content-center mt-3">
-                <img src="assets/images/gtuc-src.png" alt="">
-              </div>
-              
-              <div [ngClass]="showIndexForm">
-                <form class="text-center" [formGroup]="indexForm" (ngSubmit)="generateToken()">
-                  <mat-form-field appearance="outline" style="width:300px"  >
-                      <mat-label>Index Number</mat-label>
-                      <input matInput placeholder="040854116"  formControlName="indexNumber" >
-                      <mat-error *ngIf="indexForm.get('indexNumber').invalid"> Invalid input </mat-error>
-                    </mat-form-field>
-  
-                    <div align="center">
-                      <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!indexForm.valid">Generate Token</button>
-                    </div>
-  
-                </form>
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#indexForm" role="tab" aria-controls="home" aria-selected="true" >Index Number</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#message" role="tab" aria-controls="profile" aria-selected="false" #message>Message</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tokenForm" role="tab" aria-controls="contact" aria-selected="false" #token>Token</a>
+                </li>
+              </ul>
+
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="indexForm" role="tabpanel" aria-labelledby="home-tab">  
+                  
+                  <div [ngClass]="showIndexForm">
+
+                <div class="row justify-content-center mt-3">
+                  <img src="assets/images/gtuc-src.png" alt="">
+                </div>
+                    <form class="text-center" [formGroup]="indexForm" (ngSubmit)="generateToken()">
+                      <mat-form-field appearance="outline" style="width:300px"  >
+                          <mat-label>Index Number</mat-label>
+                          <input matInput placeholder="040854116"  formControlName="indexNumber" >
+                          <mat-error *ngIf="indexForm.get('indexNumber').invalid"> Invalid input </mat-error>
+                        </mat-form-field>
+                         <div align="center">
+                          <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!indexForm.valid">Generate Token</button>
+                        </div>
+                    </form>
+                </div>
               </div>
 
-              <div [ngClass]="showTokenForm">
-                <form class="text-center" [formGroup]="tokenForm" (ngSubmit)="loginToVote()">
-  
-                  <div class="alert alert-info mt-2">
-                    <p >Token sent to <b>{{ destination }} </b>  <br>  Resend in token in <countdown [config]="config" (event)="handleEvent($event)" #cd></countdown> <br>
-                      <button class="btn btn-outline-info btn-sm" [disabled]="!tokenTimeout"> Generate Token</button></p>
-                  </div>
-                  <mat-form-field appearance="outline" style="width:300px"  >
-                      <mat-label>Token</mat-label>
-                      <input matInput placeholder=""  formControlName="token" >
-                      <mat-error *ngIf="tokenForm.get('token').invalid"> Invalid input </mat-error>
-                    </mat-form-field>
-  
-                    <div align="center">
-                      <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!tokenForm.valid">Login</button>
-                    </div>
-  
-                </form>
+                <div class="tab-pane fade text-center" id="message" role="tabpanel" aria-labelledby="profile-tab">
+                 <img src="assets/images/notification.svg" alt=""  >
+                 <div class="row">
+                  
+                   <div class="col-12">
+                    <h5>Where should token be sent to ?</h5>
+                    <button mat-stroked-button color="primary">
+                        <mat-icon > chat</mat-icon>  
+                         <span class="pr-3"></span> {{phoneNumer}}
+                    </button>
+                    <br>
+                    <button mat-stroked-button color="accent" class="mt-3">
+                      <mat-icon > email</mat-icon>  
+                       <span class="pr-3"></span> {{emailAccount}}
+                  </button>
 
+                   </div>
+                 </div>
+                </div>
+
+                <div class="tab-pane fade" id="tokenForm" role="tabpanel" aria-labelledby="contact-tab">                  
+                  <form class="text-center" [formGroup]="tokenForm" (ngSubmit)="loginToVote()">      
+                    <div class="alert alert-info mt-2">
+                      <p >Token sent to <b>{{ destination }} </b>  <br>  Resend in token in <countdown [config]="config" (event)="handleEvent($event)" #cd></countdown> <br>
+                        <button class="btn btn-outline-info btn-sm" [disabled]="!tokenTimeout"> Generate Token</button></p>
+                    </div>
+                    <mat-form-field appearance="outline" style="width:300px"  >
+                        <mat-label>Token</mat-label>
+                        <input matInput placeholder=""  formControlName="token" >
+                        <mat-error *ngIf="tokenForm.get('token').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+    
+                      <div align="center">
+                        <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!tokenForm.valid">Login</button>
+                      </div>
+                  </form>
+          
+                </div>
               </div>
-         
-                
-                
-              
+                  
             </mat-card-content>
           
           </mat-card>
