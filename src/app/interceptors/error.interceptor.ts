@@ -25,7 +25,7 @@ intercept(
                         this._router.navigate(['/login']);
                         this._authService.logout();
 
-                    }if(err.status == 400){
+                    }else if(err.status == 400){
                         this._toastr.info( err.error.message, "Oops 🥺", {  timeOut:4000});
                         
                     }else{

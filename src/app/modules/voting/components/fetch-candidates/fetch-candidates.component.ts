@@ -23,6 +23,9 @@ declare var particlesJS: any;
 })
 export class FetchCandidatesComponent implements OnInit {
 
+  indexNumber: string;
+  faculty: number;
+  internationalStudent: boolean;
   token: string ;
   type: string;
   isLoading: boolean = false;
@@ -45,10 +48,13 @@ export class FetchCandidatesComponent implements OnInit {
   
 
    ngOnInit(): void {
+
+    this.indexNumber = this.route.snapshot.paramMap.get('indexNumber');
+    this.faculty = parseInt(this.route.snapshot.paramMap.get('faculty'));
+    this.internationalStudent = (this.route.snapshot.paramMap.get('internationalStudent') === 
+    'true');
     this.token = this.route.snapshot.paramMap.get('token');
     this.type = this.route.snapshot.paramMap.get('nominees');
-
-    console.log(this.token)
     this.invokeParticles();
     this.fetchCandidates();
    this.loadForm();
@@ -69,7 +75,13 @@ export class FetchCandidatesComponent implements OnInit {
   fetchCandidates(){
 
     this.isLoading = true;
-    this._voterService.fetchCandidates(this.type,this.token).subscribe(result=>{
+    
+    let nomineesParam = {
+      indexNumber: this.indexNumber,
+      faculty: this.faculty,
+      internationalStudent: this.internationalStudent
+    }
+    this._voterService.fetchCandidates(nomineesParam).subscribe(result=>{
         let nomineeList = result.data;
         console.log("nominee", nomineeList)
 
@@ -82,9 +94,6 @@ export class FetchCandidatesComponent implements OnInit {
             return nominee;
           }
         })
-
-        console.log("src", this.srcCategory)
-        console.log("faculty", this.facultyCategory)
 
         this.internationalCategory  = nomineeList.filter((nominee)=>{
           return nominee.cat_name == "ISA"

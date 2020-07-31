@@ -33,8 +33,8 @@ export class VoterService {
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/verify/${token}`);
    }
    
-  fetchCandidates(type: string, token: string): Observable<ApiResponse<any>>{
-    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/${type}/${token}`);
+  fetchCandidates(data: any): Observable<ApiResponse<any>>{
+    return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/fetchNominees`, data);
    }
 
 

@@ -6,8 +6,7 @@ import { FetchCandidatesComponent } from './components/fetch-candidates/fetch-ca
 
 const routes: Routes = [
     {path: '', component: GenerateTokenComponent },
-    {path: 'candidates/:token/:nominees', component: FetchCandidatesComponent }
-
+    {path: 'candidates/:indexNumber/:faculty', component: FetchCandidatesComponent }
 ];
 
 
