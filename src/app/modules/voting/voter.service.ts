@@ -19,9 +19,15 @@ export class VoterService {
     return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/cast`, data);
    }
 
-  genrateToken(indexNumber: string): Observable<ApiResponse<any>>{
+  genrateVoter(indexNumber: string): Observable<ApiResponse<any>>{
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/generate/${indexNumber}`);
    }
+
+
+   genrateToken(indexNumber: string, destination: string): Observable<ApiResponse<any>>{
+    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/token/${indexNumber}/${destination}`);
+   }
+
 
   verifyToken(token: string): Observable<ApiResponse<any>>{
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/verify/${token}`);
@@ -30,6 +36,7 @@ export class VoterService {
   fetchCandidates(type: string, token: string): Observable<ApiResponse<any>>{
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/${type}/${token}`);
    }
+
 
 
 

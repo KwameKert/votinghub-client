@@ -19,6 +19,7 @@ export class GenerateTokenComponent implements OnInit {
   @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
   @ViewChild('message', {static: false}) message : ElementRef<HTMLElement>;
   phoneNumber: string;
+  indexNumber: string;
   emailAccount: string;
   token: string ;
   indexForm: FormGroup ;
@@ -58,26 +59,39 @@ export class GenerateTokenComponent implements OnInit {
 
   generateToken(){
     
-    let indexNumber = this.indexForm.get("indexNumber").value;
+    this.indexNumber = this.indexForm.get("indexNumber").value;
     let el: HTMLElement = this.message.nativeElement;
     el.click();
-    
-   // this.isLoading = true;
-    // this.ngxService.start();
-    // this._voterService.genrateToken(indexNumber).subscribe(result=>{
-
-    //   this.destination = result.data
-    //   this.showIndexForm= "d-none";
-    //   this.showTokenForm = "d-block";
-    //   this.countdown.begin();
-    //   console.log(this.tokenTimeout)
-    // }, error=>{
-    //   console.error(error)
-    // }).add(()=>{
-    //   this.ngxService.stop();
-    // })
+        
+   //this.isLoading = true;
+    this.ngxService.start();
+    this._voterService.genrateVoter(this.indexNumber).subscribe(result=>{
+      this.phoneNumber  = result.data.phone;
+      this.emailAccount = result.data.email;
+    }, error=>{
+      console.error(error)
+    }).add(()=>{
+      this.ngxService.stop();
+    })
 
   }
+
+
+  sendToken(destination: string){
+    this._voterService.genrateToken(this.indexNumber, destination).subscribe(result=>{
+      // this.phoneNumber  = result.data.phone;
+      // this.emailAccount = result.data.email;
+    }, error=>{
+      console.error(error)
+    }).add(()=>{
+      this.ngxService.stop();
+    })
+   
+
+  }
+
+
+
 
   loginToVote(){
     this.isLoading = true;
