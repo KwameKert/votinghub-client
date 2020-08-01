@@ -1,0 +1,29 @@
+
+<h3 mat-dialog-title>View Results for {{data.name}}
+</h3>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="container">
+    <div  class="row  pt-4  justify-content-center" *ngFor="let candidate of data.candidates">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <img [src]="candidate.imageUrl" alt="" class="img-thumbnail">
+                    </div>
+                    <div class="col-8">
+                        <p>Name: {{ candidate.name}}</p>
+                        <p> <b>Vote Percentage: {{ convertToPercentage(candidate.votes.length)}}% </b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ 
+    </div>
+
+    
+</div>
+<div mat-dialog-actions class="float-right">
+    <button mat-button (click)="close()" class="float-right">Close</button>
+    
+  </div>

@@ -10,6 +10,7 @@ import { CrudService } from '../../../shared/service/crud.service';
 import { ViewPositionComponent} from '../view-position/view-position.component';
 import { Position } from 'src/app/models/Position';
 import { MatTableDataSource } from '@angular/material/table';
+import { ViewResultsComponent } from '../view-results/view-results.component';
 
 @Component({
   selector: 'app-list-position',
@@ -139,6 +140,21 @@ export class ListPositionComponent implements OnInit {
           timeOut:2000
         })
       }
+    });
+  }
+
+
+  viewResults(position){
+    const dialogRef = this.dialog.open(ViewResultsComponent, {
+      width: '600px',
+      data: position
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    }, error=>{
+      this._toastr.error("Oops an error. 🥺","",{
+        timeOut:2000
+      })
     });
   }
 

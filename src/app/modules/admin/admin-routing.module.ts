@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ListUserComponent} from '../user';
-import {ListElectionComponent} from '../election';
+import {ListElectionComponent, DashboardComponent} from '../election';
 import {ListCategoryComponent} from '../category';
 import {ListPositionComponent} from '../position';
 import {AddCandidateComponent, ListCandidateComponent, EditCandidateComponent} from '../candidate';
@@ -14,6 +14,7 @@ const routes: Routes = [
     {path: 'candidate/add', component: AddCandidateComponent },
     {path: 'candidate/list', component: ListCandidateComponent },
     {path: 'candidate/edit/:id', component: EditCandidateComponent },
+    {path: 'dashboard', component: DashboardComponent },
 
 ];
 

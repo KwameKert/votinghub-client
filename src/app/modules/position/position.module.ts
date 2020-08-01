@@ -5,14 +5,15 @@ import { EditPositionComponent } from './components/edit-position/edit-position.
 import { ListPositionComponent } from './components/list-position/list-position.component';
 import { ViewPositionComponent } from './components/view-position/view-position.component';
 import {SharedModule} from '../shared/shared.module';
+import { ViewResultsComponent } from './components/view-results/view-results.component';
 
 
 @NgModule({
-  declarations: [AddPositionComponent, EditPositionComponent, ListPositionComponent, ViewPositionComponent],
+  declarations: [AddPositionComponent, EditPositionComponent, ListPositionComponent, ViewPositionComponent, ViewResultsComponent],
   imports: [
     CommonModule,
     SharedModule
   ],
-  exports: [AddPositionComponent, EditPositionComponent, ListPositionComponent, ViewPositionComponent]
+  exports: [AddPositionComponent, EditPositionComponent, ListPositionComponent, ViewPositionComponent, ViewResultsComponent]
 })
 export class PositionModule { }
