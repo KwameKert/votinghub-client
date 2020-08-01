@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ParticlesConfig} from '../../modules/config/particles-config';
+import { ParticlesConfig} from '../../../config/particles-config';
+
 
 declare var particlesJS: any;
 @Component({
-  selector: 'app-voting-layout',
-  templateUrl: './voting-layout.component.html',
-  styleUrls: ['./voting-layout.component.css']
+  selector: 'app-error-page',
+  templateUrl: './error-page.component.html',
+  styleUrls: ['./error-page.component.css']
 })
-export class VotingLayoutComponent implements OnInit {
+export class ErrorPageComponent implements OnInit {
 
   constructor() { }
 

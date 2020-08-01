@@ -8,7 +8,6 @@ import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
-declare var particlesJS: any;
 @Component({
   selector: 'app-generate-token',
   templateUrl: './generate-token.component.html',
@@ -35,7 +34,7 @@ export class GenerateTokenComponent implements OnInit {
   
 
   public ngOnInit(): void {
-    this.invokeParticles();
+   
     this.loadIndexForm();
     this.loadTokenForm();
   }
@@ -53,9 +52,6 @@ export class GenerateTokenComponent implements OnInit {
   }
 
 
-  public invokeParticles(): void {
-    particlesJS('particles-js', ParticlesConfig, function() {});
-  }
 
   generateToken(){
     

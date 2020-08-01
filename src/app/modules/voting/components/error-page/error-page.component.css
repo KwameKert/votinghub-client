@@ -18,17 +18,15 @@
     background-color: #07294d;
   }
   
-  /* html, body {
+  ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: black !important;
+  } 
+  
+  html, body {
     height: 100%;
     margin: 0;
     padding:0;
     overflow-y: auto;
-  } */
-
-  html, body {
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
-    padding:0;
   }
   

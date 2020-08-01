@@ -15,8 +15,12 @@ export class VoterService {
   constructor(private _httpClient: HttpClient) { }
 
 
+  // castVote(data: any): Observable<ApiResponse<any>>{
+  //   return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/cast`, data);
+  //  }
+  
   castVote(data: any): Observable<ApiResponse<any>>{
-    return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/cast`, data);
+    return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/election/cast`, data);
    }
 
   genrateVoter(indexNumber: string): Observable<ApiResponse<any>>{
@@ -34,7 +38,7 @@ export class VoterService {
    }
    
   fetchCandidates(data: any): Observable<ApiResponse<any>>{
-    return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/fetchNominees`, data);
+    return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/fetchCandidates`, data);
    }
 
 

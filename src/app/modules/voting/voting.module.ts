@@ -10,11 +10,13 @@ import { ViewResultsComponent } from './components/view-results/view-results.com
 import { AvatarModule } from 'ngx-avatar';
 import { CountdownModule } from 'ngx-countdown';
 import { PreloaderComponent } from '../shared/preloader/preloader.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { VoteCastedComponent } from './components/vote-casted/vote-casted.component';
 
 
 
 @NgModule({
-  declarations: [GenerateTokenComponent, ParticlesDirective, FetchCandidatesComponent, ViewResultsComponent],
+  declarations: [GenerateTokenComponent, ParticlesDirective, FetchCandidatesComponent, ViewResultsComponent, ErrorPageComponent, VoteCastedComponent],
   imports: [
     MatRadioModule,
     CommonModule,

@@ -24,7 +24,7 @@ declare var particlesJS: any;
 export class FetchCandidatesComponent implements OnInit {
 
   indexNumber: string;
-  faculty: number;
+  faculty: string;
   internationalStudent: boolean;
   token: string ;
   type: string;
@@ -46,25 +46,28 @@ export class FetchCandidatesComponent implements OnInit {
 
   constructor(private _voterService: VoterService, private _router: Router, private _formBuilder: FormBuilder,  public dialog: MatDialog,private route: ActivatedRoute, private _toastr: ToastrService) { }
   
-
    ngOnInit(): void {
-
     this.indexNumber = this.route.snapshot.paramMap.get('indexNumber');
-    this.faculty = parseInt(this.route.snapshot.paramMap.get('faculty'));
+    this.faculty = this.route.snapshot.paramMap.get('faculty');
     this.internationalStudent = (this.route.snapshot.paramMap.get('internationalStudent') === 
     'true');
     this.token = this.route.snapshot.paramMap.get('token');
     this.type = this.route.snapshot.paramMap.get('nominees');
-    this.invokeParticles();
+   // this.invokeParticles();
     this.fetchCandidates();
    this.loadForm();
   }
 
   loadForm(){
+
     this.voteForm = this._formBuilder.group({
       token: '',
+      indexNumber: '',
+      faculty: '',
+      internationalStudent: '',
       candidates: ''
     })
+    
   }
 
 
@@ -82,6 +85,11 @@ export class FetchCandidatesComponent implements OnInit {
       internationalStudent: this.internationalStudent
     }
     this._voterService.fetchCandidates(nomineesParam).subscribe(result=>{
+
+      if(result.status == 302){
+
+        this._router.navigate(["htau/success"])
+      }else{
         let nomineeList = result.data;
         console.log("nominee", nomineeList)
 
@@ -98,6 +106,9 @@ export class FetchCandidatesComponent implements OnInit {
         this.internationalCategory  = nomineeList.filter((nominee)=>{
           return nominee.cat_name == "ISA"
         })
+      }
+
+      
 
 
     }, error=>{
@@ -122,24 +133,28 @@ export class FetchCandidatesComponent implements OnInit {
     }
 
     this.voteForm.patchValue({
-      token: this.token,
+      indexNumber: this.indexNumber,
+      faculty: this.faculty,
+      internationalStudent: this.internationalStudent,
       candidates: candidateArray
     })
 
+   
     console.log(this.voteForm.value)
 
-    // this._voterService.castVote(this.voteForm.value).subscribe(result=>{
-    //   console.log(result.data);
+    this._voterService.castVote(this.voteForm.value).subscribe(result=>{
+      console.log(result.data);
 
-    //   this._toastr.success("Vote casted  😊 ","",{
-    //       timeOut:2000
-    //     })
-    //   this._router.navigate(["htau"])
+      this._toastr.success("Vote casted  😊 ","",{
+          timeOut:2000
+        })
+      //this._router.navigate(["htau"])
+      this._router.navigate(["htau/success"])
       
-    // }, error=>{
-    //   this._router.navigate(["htau"])
-    //   console.error(error)
-    // })
+    }, error=>{
+      this._router.navigate(["htau"])
+      console.error(error)
+    })
     
   }
 
