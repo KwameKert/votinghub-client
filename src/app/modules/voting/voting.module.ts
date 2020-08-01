@@ -14,7 +14,6 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { VoteCastedComponent } from './components/vote-casted/vote-casted.component';
 
 
-
 @NgModule({
   declarations: [GenerateTokenComponent, ParticlesDirective, FetchCandidatesComponent, ViewResultsComponent, ErrorPageComponent, VoteCastedComponent],
   imports: [

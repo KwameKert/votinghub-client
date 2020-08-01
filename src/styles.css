@@ -10,6 +10,9 @@ canvas {
     z-index: -2;
 }
 
+.avatar-container{
+    margin: 4px !important;
+}
 
 @media only screen and (max-width: 600px) {
 

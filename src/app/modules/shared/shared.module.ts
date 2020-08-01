@@ -25,6 +25,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 
 import { PreloaderComponent } from './preloader/preloader.component';
+import { AvatarModule } from 'ngx-avatar';
+
+// const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c", "#28a745", "#ffc107", "#17a2b8"];
 
 @NgModule({
   declarations: [ ExcerptFilter, DeleteItemComponent, PreloaderComponent],
@@ -50,7 +53,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     MatNativeDateModule,
     MatStepperModule ,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    AvatarModule
     
   ],
   providers: [  
@@ -78,7 +82,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     MatNativeDateModule,
     MatStepperModule,
     PreloaderComponent,
-    MatTabsModule
+    MatTabsModule,
+    AvatarModule,
   ],
   entryComponents: []
 })

@@ -22,8 +22,6 @@ import { ErrorInterceptor, TokenInterceptor} from './interceptors';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.component';
 
-import { AvatarModule } from 'ngx-avatar';
-const avatarColors = ['#FFB6C1', '#2c3e50', '#95a5a6', '#f39c12', '#1abc9c'];
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,9 +39,6 @@ const avatarColors = ['#FFB6C1', '#2c3e50', '#95a5a6', '#f39c12', '#1abc9c'];
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    AvatarModule.forRoot({
-      colors: avatarColors
-    }),
     MatToolbarModule,
     MatIconModule,
     MatDividerModule,

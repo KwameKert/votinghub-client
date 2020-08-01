@@ -12,6 +12,7 @@
 
       <div class="row" style="width:100%" >
 
+        
         <div [ngClass]="listUserColumn" >
           <div *ngIf="isLoading; else elseBlock" >
             <ngx-skeleton-loader
@@ -31,8 +32,8 @@
             <table mat-table [dataSource]="dataSource"  >
     
               <ng-container matColumnDef="pic">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element">  {{element.id}} </td>
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let element"> <ngx-avatar name="{{element.fullName}}" ></ngx-avatar> </td>
               </ng-container>
             
             
