@@ -47,12 +47,8 @@ export class FetchCandidatesComponent implements OnInit {
   constructor(private _voterService: VoterService, private _router: Router, private _formBuilder: FormBuilder,  public dialog: MatDialog,private route: ActivatedRoute, private _toastr: ToastrService) { }
   
    ngOnInit(): void {
-    this.indexNumber = this.route.snapshot.paramMap.get('indexNumber');
-    this.faculty = this.route.snapshot.paramMap.get('faculty');
-    this.internationalStudent = (this.route.snapshot.paramMap.get('internationalStudent') === 
-    'true');
+    
     this.token = this.route.snapshot.paramMap.get('token');
-    this.type = this.route.snapshot.paramMap.get('nominees');
    // this.invokeParticles();
     this.fetchCandidates();
    this.loadForm();
@@ -79,17 +75,17 @@ export class FetchCandidatesComponent implements OnInit {
 
     this.isLoading = true;
     
-    let nomineesParam = {
-      indexNumber: this.indexNumber,
-      faculty: this.faculty,
-      internationalStudent: this.internationalStudent
-    }
-    this._voterService.fetchCandidates(nomineesParam).subscribe(result=>{
+ 
+    this._voterService.fetchCandidates(this.token).subscribe(result=>{
 
       if(result.status == 302){
 
         this._router.navigate(["htau/success"])
-      }else{
+      }else if(result.status == 417){
+
+        this._router.navigate(["htau/error"])
+      }
+      else{
         let nomineeList = result.data;
         console.log("nominee", nomineeList)
 

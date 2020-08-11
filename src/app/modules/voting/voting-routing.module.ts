@@ -8,9 +8,10 @@ import { VoteCastedComponent } from './components/vote-casted/vote-casted.compon
 
 const routes: Routes = [
     {path: '', component: GenerateTokenComponent },
-    {path: 'candidates/:indexNumber/:faculty/:internationalStudent', component: FetchCandidatesComponent },
+    {path: 'candidates/:token', component: FetchCandidatesComponent },
     {path: 'success', component: VoteCastedComponent },
-    {path: '**', component: ErrorPageComponent}
+    {path: '**', component: ErrorPageComponent},
+    {path: 'error', component: ErrorPageComponent},
 ];
 
 
