@@ -14,7 +14,7 @@
               <mat-card-content>
   
                 <div class="row justify-content-center mt-1">
-                  <img [src]="logoUrl" alt="" style="width:15%">
+                  <img [src]="logoUrl" alt="" style="width:10%; height: 15%;" >
                 </div>
 
                 <mat-horizontal-stepper [linear]="isLinear" #stepper [ngClass]="srcStepper">
@@ -32,7 +32,7 @@
                               <div class="card  card-input">
                                
                                 <div class="card-body">
-                                  <img [src]="candidate.imageUrl" class="img-thumbnail " width="300px" height="300px" />
+                                  <img [src]="candidate.imageUrl" class="img-thumbnail " width="700px" height="500px" />
                                   <h4 class="text-center mt-2">{{candidate.name}}</h4>
                                 </div>
                               </div>
@@ -83,7 +83,7 @@
   
                         <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != facultyCategory[0]">Back</button>
                         <button mat-raised-button matStepperNext  color="primary" *ngIf="position != facultyCategory[facultyCategory.length -1]">Next</button>
-                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf=" !isInternational" (click)="viewResults(true, 'none')">Submit</button>
+                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf=" !isInternational  && position == facultyCategory[facultyCategory.length -1]" (click)="viewResults(true, 'none')">Submit</button>
                         <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == facultyCategory[facultyCategory.length -1] && isInternational" (click)="viewResults(false, 'internationalStepper')">Continue</button>
                       </div>
                       </mat-step>

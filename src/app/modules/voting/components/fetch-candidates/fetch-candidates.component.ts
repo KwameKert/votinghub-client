@@ -50,6 +50,7 @@ export class FetchCandidatesComponent implements OnInit {
     
     this.token = this.route.snapshot.paramMap.get('token');
    // this.invokeParticles();
+    console.log(this.token)
     this.fetchCandidates();
    this.loadForm();
   }
@@ -129,9 +130,7 @@ export class FetchCandidatesComponent implements OnInit {
     }
 
     this.voteForm.patchValue({
-      indexNumber: this.indexNumber,
-      faculty: this.faculty,
-      internationalStudent: this.internationalStudent,
+      token: this.token,
       candidates: candidateArray
     })
 
@@ -154,10 +153,7 @@ export class FetchCandidatesComponent implements OnInit {
     
   }
 
-
-
   viewResults(persistData: boolean,  toStepper: string){
-
     const dialogRef = this.dialog.open(ViewResultsComponent, {
       width: '600px',
       height: '400px',
