@@ -9,5 +9,5 @@ before_script:
   - npm install firebase-tools -g
 script:
   - npm install
-  - npm run build
+  - npm run build --prod
   - firebase deploy --only hosting --token "1//01rqRxN909Q-hCgYIARAAGAESNwF-L9IrGgUkDMXIQaVnk5EA0Q9cf1TxD_FyaQwRY710Zye9D8E5_uQm9DTJLnWiLV3mNeSrgS4"
