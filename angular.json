@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "hammerjs"
            ],
-            "outputPath": "dist/votinghub-client",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
