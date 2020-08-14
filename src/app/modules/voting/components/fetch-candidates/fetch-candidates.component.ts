@@ -8,10 +8,7 @@ import { Position } from 'src/app/models/Position';
 import { Candidate } from 'src/app/models/Candidate';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewResultsComponent } from '../view-results/view-results.component';
-import { timeStamp } from 'console';
 import { ToastrService } from 'ngx-toastr';
-import { Category } from 'src/app/models/Category';
-import { toTypeScript } from '@angular/compiler';
 
 
 declare var particlesJS: any;
@@ -35,7 +32,7 @@ export class FetchCandidatesComponent implements OnInit {
   srcCategory: any;
   isInternational: boolean;
   facultyCategory: any ;
-  internationalCategory: boolean = false ;
+  internationalCategory: any  ;
   srcStepper: string = "";
   logoUrl = "assets/images/gtuc-src.png";
   facultyStepper: string = "d-none";
@@ -87,9 +84,9 @@ export class FetchCandidatesComponent implements OnInit {
         this._router.navigate(["htau/error"])
       }
       else{
-        let nomineeList = result.data;
-        console.log("nominee", nomineeList)
 
+        let nomineeList = result.data;
+       
         this.srcCategory = nomineeList.filter((nominee)=>{
           return nominee.cat_name == "SRC"
         })
@@ -103,10 +100,15 @@ export class FetchCandidatesComponent implements OnInit {
         this.internationalCategory  = nomineeList.filter((nominee)=>{
           return nominee.cat_name == "ISA"
         })
+
+        if(this.internationalCategory){
+          this.isInternational = true;
+        }
+
+        console.log("src", this.srcCategory);
+        console.log("isa", this.internationalCategory);
+        console.log("faculty", this.facultyCategory);
       }
-
-      
-
 
     }, error=>{
       console.error(error)
@@ -123,6 +125,7 @@ export class FetchCandidatesComponent implements OnInit {
 
   submitResults(){
 
+    this.isLoading = true;
     let candidateArray: Array<number> = [];
 
     for(let candidate in this.selectedCadidates){
@@ -149,6 +152,8 @@ export class FetchCandidatesComponent implements OnInit {
     }, error=>{
       this._router.navigate(["htau"])
       console.error(error)
+    }).add(()=>{
+      this.isLoading = false;
     })
     
   }
@@ -200,7 +205,7 @@ export class FetchCandidatesComponent implements OnInit {
     }else if( toStepper == "internationalStepper"){
       this.facultyStepper  = "d-none";
       this.internationalStepper = "d-block";
-      this.switchCategoryLogo(this.facultyCategory[0].cat_name)
+      this.switchCategoryLogo(this.internationalCategory[0].cat_name)
     }
   }
 }

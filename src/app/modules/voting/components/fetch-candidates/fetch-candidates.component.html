@@ -83,12 +83,52 @@
   
                         <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != facultyCategory[0]">Back</button>
                         <button mat-raised-button matStepperNext  color="primary" *ngIf="position != facultyCategory[facultyCategory.length -1]">Next</button>
-                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf=" !isInternational  && position == facultyCategory[facultyCategory.length -1]" (click)="viewResults(true, 'none')">Submit</button>
-                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == facultyCategory[facultyCategory.length -1] && isInternational" (click)="viewResults(false, 'internationalStepper')">Continue</button>
+                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf=" internationalCategory.length == 0  && position == facultyCategory[facultyCategory.length -1]" (click)="viewResults(true, 'none')">Submit</button>
+                        <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == facultyCategory[facultyCategory.length -1] && internationalCategory.length != 0" (click)="viewResults(false, 'internationalStepper')">Continue</button>
                       </div>
                       </mat-step>
                     </div>
-                    </mat-horizontal-stepper>
+                </mat-horizontal-stepper>
+
+
+                <mat-horizontal-stepper [linear]="isLinear" #stepper [ngClass]="internationalStepper">
+                  <div *ngFor="let position of internationalCategory">
+                    <mat-step >
+                      <ng-template matStepLabel>{{ position.name}}</ng-template>
+                      <h3 class="text-center">{{ position.name}}</h3>
+                      <div class="row justify-content-center">
+                       
+                        <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let candidate of position.candidates">
+                          <fieldset id="{{position.name}}">
+                          <label>
+                            <input type="radio" name="{{position.name}}" class="card-input-element" (click)="addCandidate(position, candidate)" />
+                  
+                              <div class="card  card-input">
+                               
+                                <div class="card-body">
+                                  <img [src]="candidate.imageUrl" class="img-thumbnail " width="300px" height="300px" />
+                                  <h4 class="text-center mt-2">{{candidate.name}}</h4>
+                                </div>
+                              </div>
+                  
+                          </label>
+                          </fieldset>
+                          
+                        </div>
+                    </div>
+
+                    <div class="float-right">
+
+                      <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != internationalCategory[0]">Back</button>
+                      <button mat-raised-button matStepperNext  color="primary" *ngIf="position != internationalCategory[internationalCategory.length -1]">Next</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == internationalCategory[internationalCategory.length -1]" (click)="viewResults(true, 'none')">Submit</button>
+                    </div>
+                    </mat-step>
+                  </div>
+              </mat-horizontal-stepper>
+
+                    
+                    
                 
                 
               </mat-card-content>
