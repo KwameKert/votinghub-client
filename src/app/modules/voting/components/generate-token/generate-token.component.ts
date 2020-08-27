@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ParticlesConfig} from '../../../config/particles-config';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { VoterService } from '../../voter.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
@@ -28,42 +28,49 @@ export class GenerateTokenComponent implements OnInit {
   tokenTimeout: Boolean = true;
   isLoading: boolean = false;
   destination: string = '';
+  uuid: string  = '';
   config: CountdownConfig = { leftTime: 120, demand: true, format: `mm:ss` };
   
-  constructor(private _voterService: VoterService, private _router: Router, private ngxService: NgxUiLoaderService) { }
+  constructor(private _voterService: VoterService, private route: ActivatedRoute, private _router: Router, private ngxService: NgxUiLoaderService) { }
   
 
   public ngOnInit(): void {
-   
-    this.loadIndexForm();
+    this.token = this.route.snapshot.paramMap.get('token');
+   // this.loadIndexForm();
+    this.ngxService.start();
+    this.fetchVoter();
+    this.ngxService.stop();
     this.loadTokenForm();
   }
 
-  loadIndexForm(){
-    this.indexForm = new FormGroup({
-      indexNumber: new FormControl("", [Validators.maxLength(10),Validators.required, Validators.pattern("^[a-zA-Z0-9]*$")])
-    })
-  }
 
+
+
+ 
   loadTokenForm(){
     this.tokenForm = new FormGroup({
-      token: new FormControl("", [Validators.maxLength(10),Validators.required, Validators.pattern("^[a-zA-Z0-9]*$")])
+      verificationCode: new FormControl("", [Validators.maxLength(10),Validators.required, Validators.pattern("^[a-zA-Z0-9]*$")])
     })
   }
 
 
 
-  generateToken(){
+  fetchVoter(){
     
-    this.indexNumber = this.indexForm.get("indexNumber").value;
-    let el: HTMLElement = this.message.nativeElement;
-    el.click();
-        
    //this.isLoading = true;
     this.ngxService.start();
-    this._voterService.genrateVoter(this.indexNumber).subscribe(result=>{
+    this._voterService.fetchVoter(this.token).subscribe(result=>{
       this.phoneNumber  = result.data.phone;
       this.emailAccount = result.data.email;
+      this.uuid = result.data.token;
+      // if(result.status == 302){
+
+      //   this._router.navigate(["htau/success"])
+      // }else if(result.status == 417){
+
+      //   this._router.navigate(["htau/error"])
+      // }
+
     }, error=>{
       console.error(error)
     }).add(()=>{
@@ -71,38 +78,18 @@ export class GenerateTokenComponent implements OnInit {
     })
 
   }
-
-
-  sendToken(destination: string){
-    this._voterService.genrateToken(this.indexNumber, destination).subscribe(result=>{
-      // this.phoneNumber  = result.data.phone;
-      // this.emailAccount = result.data.email;
-    }, error=>{
-      console.error(error)
-    }).add(()=>{
-      this.ngxService.stop();
-    })
-   
-
-  }
-
-
 
 
   loginToVote(){
     this.isLoading = true;
-    let token = this.tokenForm.value.token;
-  
-    this._voterService.verifyToken(token).subscribe(result=>{
-      this._router.navigate([`htau/candidates/${token}/nominees`])
-    }, error=>{
-
-    })
+    let code = this.tokenForm.value.verificationCode;
+    this._router.navigate([`htau/candidates/${this.token}/${code}`]);
+   
   }
 
-  handleEvent(event){
-    console.log("done")
-    this.tokenTimeout = !this.tokenTimeout
-  }
+  // handleEvent(event){
+  //   console.log("done")
+  //   this.tokenTimeout = !this.tokenTimeout
+  // }
 
 }

@@ -20,6 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { ErrorInterceptor, TokenInterceptor} from './interceptors';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ChartsModule } from 'ng2-charts';
+
 import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.component';
 
 @NgModule({
@@ -49,6 +51,7 @@ import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.com
     NgxUiLoaderModule,
     MatSidenavModule,
     ToastrModule.forRoot(), 
+    ChartsModule
   ],
   providers: [
     DatePipe, 

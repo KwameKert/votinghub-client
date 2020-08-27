@@ -24,6 +24,7 @@ export class FetchCandidatesComponent implements OnInit {
   faculty: string;
   internationalStudent: boolean;
   token: string ;
+  code: string;
   type: string;
   isLoading: boolean = false;
   candidatesName: any = {};
@@ -46,6 +47,8 @@ export class FetchCandidatesComponent implements OnInit {
    ngOnInit(): void {
     
     this.token = this.route.snapshot.paramMap.get('token');
+    this.code = this.route.snapshot.paramMap.get('code');
+
    // this.invokeParticles();
     console.log(this.token)
     this.fetchCandidates();
@@ -53,7 +56,6 @@ export class FetchCandidatesComponent implements OnInit {
   }
 
   loadForm(){
-
     this.voteForm = this._formBuilder.group({
       token: '',
       indexNumber: '',
@@ -64,7 +66,6 @@ export class FetchCandidatesComponent implements OnInit {
     
   }
 
-
    invokeParticles(): void {
     particlesJS('particles-js', ParticlesConfig, function() {});
   }
@@ -74,7 +75,7 @@ export class FetchCandidatesComponent implements OnInit {
     this.isLoading = true;
     
  
-    this._voterService.fetchCandidates(this.token).subscribe(result=>{
+    this._voterService.fetchCandidates(this.token, this.code).subscribe(result=>{
 
       if(result.status == 302){
 
@@ -166,7 +167,7 @@ export class FetchCandidatesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //this.submitResults();
+
       if(result){
         if(persistData){
           this.selectedCadidates = {...this.candidatesId}

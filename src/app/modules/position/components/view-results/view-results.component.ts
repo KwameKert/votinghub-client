@@ -16,9 +16,7 @@ export class ViewResultsComponent implements OnInit {
     public dialogRef: MatDialogRef<ViewResultsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
    
-
   ngOnInit() {
-  
     for(let candidate of this.data.candidates){
       this.totalVotes += candidate.votes.length;
     }
@@ -27,10 +25,9 @@ export class ViewResultsComponent implements OnInit {
   convertToPercentage(vote: number){
       return( (vote/this.totalVotes)*100).toFixed(1);
   }
+
   close(){
- 
       this.dialogRef.close();
-    
    }
 
 

@@ -1,3 +1,12 @@
 mat-icon{
     font-size: 55px;
 }
+
+.chart {
+    display: block;
+  }
+
+
+  table {
+    width: 100%;
+  }

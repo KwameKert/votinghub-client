@@ -5,6 +5,7 @@ import {DefaultComponent} from './layouts/default/default.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {  VotingLayoutComponent } from './layouts/voting-layout/voting-layout.component';
 import {AuthGuard} from './auth.guard';
+import { ErrorPageComponent } from './modules/voting/components/error-page/error-page.component';
 
 const routes: Routes= [
 {
@@ -26,7 +27,11 @@ const routes: Routes= [
   component: VotingLayoutComponent,
   loadChildren: () => import('./modules/voting/voting.module')
                      .then(m => m.VotingModule)
-}
+},
+// {
+//   path:'**', 
+//   component: ErrorPageComponent
+// }
 
 ];
 
