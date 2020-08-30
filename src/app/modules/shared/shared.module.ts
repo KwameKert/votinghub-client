@@ -17,7 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { ExcerptFilter } from './excerpts.pipe';
+import { ExcerptFilter } from './pipes/excerpts.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteItemComponent} from './components/delete-item/delete-item.component';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -26,11 +26,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { PreloaderComponent } from './preloader/preloader.component';
 import { AvatarModule } from 'ngx-avatar';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 // const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c", "#28a745", "#ffc107", "#17a2b8"];
 
 @NgModule({
-  declarations: [ ExcerptFilter, DeleteItemComponent, PreloaderComponent],
+  declarations: [ ExcerptFilter, DeleteItemComponent, PreloaderComponent, DateAgoPipe],
   imports: [
     CommonModule,
     MatTableModule,
@@ -84,6 +85,7 @@ import { AvatarModule } from 'ngx-avatar';
     PreloaderComponent,
     MatTabsModule,
     AvatarModule,
+    DateAgoPipe
   ],
   entryComponents: []
 })

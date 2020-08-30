@@ -16,11 +16,10 @@ export class AdminLayoutComponent implements OnInit {
     {name: 'Positions', url: 'position/list', icon: 'stars'},
     {name: 'Candidates', url: 'candidate/list', icon: 'contacts'},
     {name: 'Users', url: 'user/list', icon: 'supervised_user_circle'},
+    {name: 'Man', url: 'user/list', icon: 'fingerprint'},
   ]
     
 
-
- 
   constructor() { }
 
 

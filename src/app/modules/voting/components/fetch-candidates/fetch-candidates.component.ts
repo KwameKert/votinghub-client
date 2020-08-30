@@ -38,6 +38,11 @@ export class FetchCandidatesComponent implements OnInit {
   logoUrl = "assets/images/gtuc-src.png";
   facultyStepper: string = "d-none";
   internationalStepper: string = "d-none";
+  noCandidate: Candidate = {
+    id: 0,
+    name: "none",
+    imageUrl: ""
+  }
   
   isLinear = false;
   voteForm: FormGroup;

@@ -78,24 +78,11 @@
 
 
 <div class="row ">
-    <!-- <div class="col-6">
-        <div class="chart"  *ngIf="pieChartData">
-            <canvas baseChart
-            height="35vh" width="50vw"
-              [data]="pieChartData"
-              [labels]="pieChartLabels"
-              [chartType]="pieChartType"
-              [options]="pieChartOptions"
-              [plugins]="pieChartPlugins"
-              [colors]="pieChartColors"
-              [legend]="pieChartLegend">
-            </canvas>
-          </div>
-    </div> -->
+
     <div class="col-12">
         <mat-card class="mat-elevation-z5">
             <mat-card-header>
-                <mat-card-title>Active Voters</mat-card-title>
+                <mat-card-title>Latest Voters</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <table mat-table [dataSource]="dataSource"  >  
@@ -119,7 +106,7 @@
                     </ng-container>
                     <ng-container matColumnDef="createdAt">
                       <th mat-header-cell *matHeaderCellDef> Created At  </th>
-                      <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'mediumDate'}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.createdAt | dateAgo}} </td>
                     </ng-container>
           
         
