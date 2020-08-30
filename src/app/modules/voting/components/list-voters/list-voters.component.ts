@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-list-voters',
@@ -31,11 +32,11 @@ export class ListVotersComponent implements OnInit {
 
   allowedColumns: any = [
     {def:'pic', slideShow: false},
-    {def: 'username', slideShow: true},
-    {def: 'full name', slideShow: false},
+    {def: 'name', slideShow: true},
+    {def: 'indexNumber', slideShow: false},
+    {def: 'createdAt', slideShow: false},
     {def: 'email',  slideShow: true},
-    {def: 'role', slideShow:false},
-    {def: 'actions', slideShow: false}
+    {def: 'phone',  slideShow: true},
   ];
 
   constructor(private _crudService: CrudService, public dialog: MatDialog, private _snackBar: MatSnackBar, private _router: Router, private _toastr: ToastrService) { }
@@ -54,12 +55,13 @@ export class ListVotersComponent implements OnInit {
   loadAllVoters(){
     this._crudService.fetchAll("voter").subscribe(data=>{
       
+      console.log(data.data)
       if(data.data == null){
         this._toastr.info("No voters found. 🥺","",{
           timeOut:2000
         })
       }else{
-        this.dataSource = data.data;
+        this.dataSource = new MatTableDataSource<Position>(data.data);;
         this.dataSource.paginator = this.paginator;
       }
       

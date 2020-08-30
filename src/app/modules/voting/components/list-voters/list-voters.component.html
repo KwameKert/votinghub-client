@@ -37,35 +37,37 @@
               </ng-container>
             
             
-              <ng-container matColumnDef="username">
-                <th mat-header-cell *matHeaderCellDef> Votername </th>
-                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+              <ng-container matColumnDef="indexNumber">
+                <th mat-header-cell *matHeaderCellDef> Index Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.indexNumber}} </td>
               </ng-container>
     
     
-                <ng-container matColumnDef="full name">
+                <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef> Name </th>
                   <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
                 </ng-container>
             
-              <!-- Weight Column -->
+              
               <ng-container matColumnDef="email">
                 <th mat-header-cell *matHeaderCellDef> Email </th>
                 <td mat-cell *matCellDef="let element"> {{element.email}} </td>
               </ng-container>
             
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="role">
-                <th mat-header-cell *matHeaderCellDef> Role </th>
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+              </ng-container>
+             
+              <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef> Created On </th>
                 <td mat-cell *matCellDef="let element">
-                  <div *ngFor="let role of element.roles">
-                      {{role.role}}
-                  </div>  
+                  {{ element.createdAt | dateAgo }}
                  </td>
               </ng-container>
             
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="actions" style="display: none">
+            
+              <!-- <ng-container matColumnDef="actions" style="display: none">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let element"> 
                   <button mat-button [matMenuTriggerFor]="belowMenu" aria-label="Example icon-button with a menu">
@@ -88,7 +90,7 @@
                   </mat-menu>
                 </td>
               </ng-container>
-            
+             -->
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
@@ -98,7 +100,7 @@
         </div>
 
         <div [ngClass]="addVoterColumn">
-          <app-add-user (newVoter)="newVoterCreated($event)"  ></app-add-user>
+          <app-add-voter (newVoter)="newVoterCreated($event)"  ></app-add-voter>
         </div>
 
       </div>

@@ -28,6 +28,11 @@ export class VoterService {
    }
 
 
+   createVoter(data: any): Observable<ApiResponse<any>>{
+    return this._httpClient.post<ApiResponse<any>>(`${this._baseUrl}/voter/generate`, data);
+   }
+
+
    genrateToken(indexNumber: string, destination: string): Observable<ApiResponse<any>>{
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/token/${indexNumber}/${destination}`);
    }

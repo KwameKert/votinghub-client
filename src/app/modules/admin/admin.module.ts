@@ -7,6 +7,7 @@ import {ElectionModule} from '../election/election.module';
 import {CategoryModule} from '../category/category.module';
 import {PositionModule} from '../position/position.module';
 import {CandidateModule} from '../candidate/candidate.module';
+import { VotingModule } from '../voting/voting.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {CandidateModule} from '../candidate/candidate.module';
     ElectionModule,
     CategoryModule,
     PositionModule,
-    CandidateModule
+    CandidateModule,
+    VotingModule
   ],
   providers: [
     DatePipe 

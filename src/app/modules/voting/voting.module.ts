@@ -25,6 +25,9 @@ import { AddVoterComponent } from './components/add-voter/add-voter.component';
     AvatarModule,
     SharedModule,
     CountdownModule 
+  ],
+  exports: [
+    ListVotersComponent, AddVoterComponent
   ]
 })
 export class VotingModule { }
