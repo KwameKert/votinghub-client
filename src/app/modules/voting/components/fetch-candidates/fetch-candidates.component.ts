@@ -173,6 +173,7 @@ export class FetchCandidatesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
+      console.log(toStepper)
       if(result){
         if(persistData){
           this.selectedCadidates = {...this.candidatesId}
@@ -210,6 +211,7 @@ export class FetchCandidatesComponent implements OnInit {
       this.switchCategoryLogo(this.facultyCategory[0].cat_name)
     }else if( toStepper == "internationalStepper"){
       this.facultyStepper  = "d-none";
+      this.srcStepper = "d-none";
       this.internationalStepper = "d-block";
       this.switchCategoryLogo(this.internationalCategory[0].cat_name)
     }

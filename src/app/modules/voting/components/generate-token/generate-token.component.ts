@@ -63,13 +63,13 @@ export class GenerateTokenComponent implements OnInit {
       this.phoneNumber  = result.data.phone;
       this.emailAccount = result.data.email;
       this.uuid = result.data.token;
-      // if(result.status == 302){
+      if(result.status == 302){
 
-      //   this._router.navigate(["htau/success"])
-      // }else if(result.status == 417){
+        this._router.navigate(["htau/success"])
+      }else if(result.status == 417){
 
-      //   this._router.navigate(["htau/error"])
-      // }
+        this._router.navigate(["htau/error"])
+      }
 
     }, error=>{
       console.error(error)

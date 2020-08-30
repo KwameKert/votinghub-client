@@ -28,6 +28,10 @@ const routes: Routes= [
   loadChildren: () => import('./modules/voting/voting.module')
                      .then(m => m.VotingModule)
 },
+{
+  path: '**',
+  component: ErrorPageComponent
+}
 // {
 //   path:'**', 
 //   component: ErrorPageComponent

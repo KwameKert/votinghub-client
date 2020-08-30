@@ -62,7 +62,9 @@
 
                       <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != srcCategory[0]">Back</button>
                       <button mat-raised-button matStepperNext  color="primary" *ngIf="position != srcCategory[srcCategory.length -1]">Next</button>
-                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1]" (click)="viewResults(false,  'facultyStepper')">Continue</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1] && facultyCategory.length != 0"  (click)="viewResults(false,  'facultyStepper')">Continue</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="  position == srcCategory[srcCategory.length -1]  && facultyCategory.length == 0 && internationalCategory.length == 0 " (click)="viewResults(true, 'none')">Submit</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1] && internationalCategory.length != 0" (click)="viewResults(false, 'internationalStepper')">International</button>
                     </div>
                     </mat-step>
                   </div>
