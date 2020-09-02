@@ -21,8 +21,9 @@ intercept(
                 if(err instanceof HttpErrorResponse) {
                     
                     if(err.status == 403){
+                        console.log("im here here")
                         this._toastr.error("Please authenticate", "Oops 🥺", {  timeOut:4000});
-                        this._router.navigate(['/login']);
+                        this._router.navigate(['auth/login/now']);
                         this._authService.logout();
 
                     }else if(err.status == 400){

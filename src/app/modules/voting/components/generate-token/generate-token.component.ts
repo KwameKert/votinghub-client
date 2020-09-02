@@ -84,7 +84,6 @@ export class GenerateTokenComponent implements OnInit {
     this.isLoading = true;
     let code = this.tokenForm.value.verificationCode;
     this._router.navigate([`htau/candidates/${this.token}/${code}`]);
-   
   }
 
   // handleEvent(event){

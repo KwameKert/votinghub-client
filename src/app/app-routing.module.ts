@@ -9,7 +9,7 @@ import { ErrorPageComponent } from './modules/voting/components/error-page/error
 
 const routes: Routes= [
 {
-  path:'', 
+  path:'auth', 
   component: AuthLayoutComponent,
   loadChildren: () => import('./modules/authentication/authentication.module')
                      .then(m => m.AuthenticationModule)

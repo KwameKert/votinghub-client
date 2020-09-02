@@ -6,6 +6,7 @@ import {ListCategoryComponent} from '../category';
 import {ListPositionComponent} from '../position';
 import {AddCandidateComponent, ListCandidateComponent, EditCandidateComponent} from '../candidate';
 import { ListVotersComponent } from '../voting/components/list-voters/list-voters.component';
+import { ListStudentComponent } from '../voting/components/list-student/list-student.component';
 
 const routes: Routes = [
     {path: 'user/list', component: ListUserComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path: 'candidate/edit/:id', component: EditCandidateComponent },
     {path: 'dashboard', component: DashboardComponent },
     {path: 'voter/list', component: ListVotersComponent },
+    {path: 'student/list', component: ListStudentComponent },
 
 ];
 

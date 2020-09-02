@@ -1,0 +1,57 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
+ 
+
+
+  <div class="row  justify-content-center " *ngIf="showForm" >
+ 
+    <div class="col-md-6 col-sm-12  mt-5  ">
+        <mat-card class="example-card mat-elevation-z8">
+            <mat-card-header class="justify-content-center">
+              <mat-card-title class="text-center">GTUC DECIDES 2020</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+        
+            <mat-card-content>
+
+              <form class="text-center" [formGroup]="indexNumberForm" (ngSubmit)="loginToVote()">      
+             
+                <mat-form-field appearance="outline" style="width:300px"  >
+                    <mat-label>Index Number</mat-label>
+                    <input matInput placeholder=""  formControlName="indexNumber" >
+                    <mat-error *ngIf="indexNumberForm.get('indexNumber').invalid"> Invalid input </mat-error>
+                  </mat-form-field>
+
+                  <div align="center">
+                    <button type="submit" class="btn btn-primary btn-block btn-sm"  style="width:230px"  [disabled]="!indexNumberForm.valid">Login</button>
+                  </div>
+              </form>
+                  
+            </mat-card-content>
+          
+          </mat-card>
+    </div>
+
+</div>  
+
+
+
+
+<div class="row  justify-content-center " style="margin-top: 200px" *ngIf="showSuccessMessage" >
+    <div class="col-md-6 col-sm-12  mt-2 ">
+        <mat-card class="example-card ">
+            <mat-card-header class="justify-content-center">
+              <mat-card-title class="text-center">GTUC DECIDES 2020</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+        
+            <mat-card-content class="text-center">                     
+                    <mat-icon>report_problem</mat-icon>
+                    <div class="alert alert-success">
+                        <p class="lead">Token sent to <b> {{ phone }} </b> |  <b>{{ email}} </b>  </p>
+                    </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+

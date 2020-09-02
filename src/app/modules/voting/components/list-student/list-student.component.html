@@ -1,0 +1,110 @@
+<mat-card class="mat-elevation-z8">
+
+    <mat-card-header>
+        <mat-card-title>All Student</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-raised-button color="primary" class="float-right mb-1" (click)="addStudent()" *ngIf="!isAddStudent"> <mat-icon>add</mat-icon> New Student</button>
+
+      <button #listStudents mat-raised-button color="accent" class="float-right mb-1" (click)="listStudent()" *ngIf="isAddStudent" > <mat-icon>toc</mat-icon> List Student</button>
+
+      <div class="row" style="width:100%" >
+
+        
+        <div [ngClass]="listStudentColumn" >
+          <div *ngIf="isLoading; else elseBlock" >
+            <ngx-skeleton-loader
+            count="5"
+            [theme]="{
+              width: '90%',
+              'border-radius': '0',
+              height: '15px',
+              'margin-bottom': '10px'
+            }"
+          ></ngx-skeleton-loader>
+          </div>
+       
+    
+           <ng-template #elseBlock>
+             
+            <table mat-table [dataSource]="dataSource"  >
+    
+              <ng-container matColumnDef="pic">
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let element"> <ngx-avatar name="{{element.name}}" ></ngx-avatar> </td>
+              </ng-container>
+            
+            
+              <ng-container matColumnDef="indexNumber">
+                <th mat-header-cell *matHeaderCellDef> Index Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.indexNumber}} </td>
+              </ng-container>
+    
+    
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+            
+              
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+              </ng-container>
+             
+              <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef> Created On </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.createdAt | dateAgo }}
+                 </td>
+              </ng-container>
+            
+            
+              <!-- <ng-container matColumnDef="actions" style="display: none">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <button mat-button [matMenuTriggerFor]="belowMenu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #belowMenu="matMenu" yPosition="below">
+                    <button mat-menu-item (click)="viewStudent(element)">
+                      <mat-icon>visibility</mat-icon>
+                      <span>View Student </span>
+                    </button>
+
+                    <button mat-menu-item (click)="editStudent(element.id)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit Student </span>
+                    </button>
+                    <button mat-menu-item (click)="deleteStudent(element.id)">
+                      <mat-icon>clear</mat-icon>
+                      <span>Delete Student</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+             -->
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+           </ng-template>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+        <div [ngClass]="addStudentColumn">
+          <app-add-student (newStudent)="newStudentCreated($event)"  ></app-add-student>
+        </div>
+
+      </div>
+  
+    
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,63 @@
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-center ">
+                <form [formGroup]="studentForm" (ngSubmit)="addVoter()">
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Full Name</mat-label>
+                        <input matInput placeholder="Test Voter"  formControlName="name" >
+                        <mat-error *ngIf="studentForm.get('name').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Index Number</mat-label>
+                        <input matInput placeholder="04091545"  formControlName="indexNumber" >
+                        <mat-error *ngIf="studentForm.get('indexNumber').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Programme</mat-label>
+                        <input matInput placeholder="BBA"  formControlName="programme" >
+                        <mat-error *ngIf="studentForm.get('programme').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Level</mat-label>
+                        <mat-select  formControlName="level">
+                            <mat-option>None</mat-option>
+                            <mat-option value="100" >100</mat-option>
+                            <mat-option value="200" >200</mat-option>
+                            <mat-option value="300" >300</mat-option>
+                            <mat-option value="400" >400</mat-option>
+                          </mat-select>
+                        <mat-error *ngIf="studentForm.get('level').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>International</mat-label>
+                        <mat-select  formControlName="isInternational">
+                            <mat-option>None</mat-option>
+                            <mat-option value="true" >Yes</mat-option>
+                            <mat-option value="false" >No</mat-option>
+                          </mat-select>
+                        <mat-error *ngIf="studentForm.get('isInternational').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Email </mat-label>
+                        <input matInput placeholder="test@gmail.com"  formControlName="email" >
+                        <mat-error *ngIf="studentForm.get('email').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Phone</mat-label>
+                        <input matInput placeholder="020202121"  formControlName="phone" >
+                        <mat-error *ngIf="studentForm.get('phone').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+
+                      <button mat-raised-button color="primary" class="float-right mb-1" type="submit"  [disabled]="!studentForm.valid"> <mat-icon>done</mat-icon> Save Voter</button>
+        
+                </form>
+            </div>
+        </div>
+
+  
