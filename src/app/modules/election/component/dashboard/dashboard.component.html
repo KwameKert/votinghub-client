@@ -64,8 +64,8 @@
                         <mat-icon color="primary">how_to_vote</mat-icon>
                     </div>
                     <div class="col-md-8 ">
-                        <h4>{{votes}}</h4>
-                        <p class="lead"> Votes</p>
+                        <h4>{{voters}}</h4>
+                        <p class="lead"> Voters</p>
                     </div>
                 </div>
         
@@ -77,39 +77,34 @@
 </div>
 
 
-<div class="row ">
+
+<div class="row mb-5">
     <div class="col-6">
         <mat-card class="mat-elevation-z5">
             <mat-card-header>
-                <mat-card-title>Association Analysis</mat-card-title>
+                <mat-card-title>Voter Analysis</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <highcharts-chart 
                 [Highcharts]="Highcharts"
-                [options]="pieChartOptions"
+                [options]="lineChartOptions"
               
-                style="width: 100%; height: 300px; display: block;"
+                style="width: 90%; height:300px; display: block;"
               ></highcharts-chart>
-
-                </mat-card-content>
-                </mat-card>
-
-
+            
+            </mat-card-content>
+        
+        </mat-card>
     </div>
 
     <div class="col-6">
         <mat-card class="mat-elevation-z5">
             <mat-card-header>
-                <mat-card-title>Country Analysis</mat-card-title>
+                <mat-card-title>Latest Voters</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <highcharts-chart 
-                [Highcharts]="Highcharts"
-                [options]="barChartOptions"
-              
-                style="width: 100%; height: 300px; display: block;"
-              ></highcharts-chart>
-                <!-- <table mat-table [dataSource]="dataSource"  >  
+
+                <table mat-table [dataSource]="dataSource"  >  
                     <ng-container matColumnDef="id">
                       <th mat-header-cell *matHeaderCellDef> No. </th>
                       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -135,31 +130,10 @@
                  
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                  </table> -->
-            </mat-card-content>
-        
-        </mat-card>
-     
-    </div>
-</div>
+                  </table> 
+                </mat-card-content>
+                </mat-card>
 
 
-<div class="row">
-    <div class="col-6">
-        <mat-card class="mat-elevation-z5">
-            <mat-card-header>
-                <mat-card-title>Country Analysis</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <highcharts-chart 
-                [Highcharts]="Highcharts"
-                [options]="lineChartOptions"
-              
-                style="width: 100%; height: 300px; display: block;"
-              ></highcharts-chart>
-            
-            </mat-card-content>
-        
-        </mat-card>
     </div>
 </div>
