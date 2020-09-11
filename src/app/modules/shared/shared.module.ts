@@ -28,6 +28,7 @@ import { PreloaderComponent } from './preloader/preloader.component';
 import { AvatarModule } from 'ngx-avatar';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 
+import { HighchartsChartModule } from 'highcharts-angular';
 // const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c", "#28a745", "#ffc107", "#17a2b8"];
 
 @NgModule({
@@ -55,7 +56,8 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     MatStepperModule ,
     MatRadioModule,
     MatTabsModule,
-    AvatarModule
+    AvatarModule,
+    HighchartsChartModule
     
   ],
   providers: [  
@@ -85,7 +87,8 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     PreloaderComponent,
     MatTabsModule,
     AvatarModule,
-    DateAgoPipe
+    DateAgoPipe,
+    HighchartsChartModule
   ],
   entryComponents: []
 })

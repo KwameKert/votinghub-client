@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import '~ngx-toastr/toastr';
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color:  aliceblue; overflow-x: hidden; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color:  aliceblue; overflow: hidden; }
 canvas {
     margin-top: -500px;
     display:block;

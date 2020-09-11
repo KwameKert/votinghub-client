@@ -25,6 +25,8 @@
     "bootstrap": "^4.4.1",
     "chartjs-plugin-datalabels": "^0.7.0",
     "hammerjs": "^2.0.8",
+    "highcharts": "^8.2.0",
+    "highcharts-angular": "^2.8.0",
     "jquery": "3.5.0",
     "ngx-avatar": "^4.0.0",
     "ngx-countdown": "^10.0.0",

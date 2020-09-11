@@ -60,8 +60,12 @@ export class GenerateTokenComponent implements OnInit {
    //this.isLoading = true;
     this.ngxService.start();
     this._voterService.fetchVoter(this.token).subscribe(result=>{
-      this.phoneNumber  = result.data.phone;
-      this.emailAccount = result.data.email;
+      let fullNumber = result.data.phone
+      let fullEmail = result.data.email
+      this.phoneNumber = fullNumber.substring(0, 4) + "****" + fullNumber.substring(8);
+      this.emailAccount = fullEmail.substring(0,4) + "******" + fullEmail.substring(8);
+      // this.phoneNumber  = result.data.phone;
+      // this.emailAccount = result.data.email;
       this.uuid = result.data.token;
       if(result.status == 302){
 

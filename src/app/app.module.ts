@@ -21,6 +21,8 @@ import { DatePipe } from '@angular/common';
 import { ErrorInterceptor, TokenInterceptor} from './interceptors';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
+
+
 import { VotingLayoutComponent } from './layouts/voting-layout/voting-layout.component';
 
 @NgModule({

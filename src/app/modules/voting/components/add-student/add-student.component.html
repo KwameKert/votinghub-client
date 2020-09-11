@@ -17,7 +17,14 @@
 
                       <mat-form-field appearance="outline" style="width:500px"  >
                         <mat-label>Programme</mat-label>
-                        <input matInput placeholder="BBA"  formControlName="programme" >
+                        <mat-select  formControlName="programme">
+                          <mat-option>None</mat-option>
+                          <mat-option value="BCE" >BCE</mat-option>
+                          <mat-option value="BTE" >BTE</mat-option>
+                          <mat-option value="BIT" >BIT</mat-option>
+                          <mat-option value="DIT" >DIT</mat-option>
+                          <mat-option value="BBA" >BBA</mat-option>
+                        </mat-select>
                         <mat-error *ngIf="studentForm.get('programme').invalid"> Invalid input </mat-error>
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width:500px"  >

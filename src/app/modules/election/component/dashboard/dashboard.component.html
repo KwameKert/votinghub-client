@@ -78,14 +78,38 @@
 
 
 <div class="row ">
-
-    <div class="col-12">
+    <div class="col-6">
         <mat-card class="mat-elevation-z5">
             <mat-card-header>
-                <mat-card-title>Latest Voters</mat-card-title>
+                <mat-card-title>Association Analysis</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <table mat-table [dataSource]="dataSource"  >  
+                <highcharts-chart 
+                [Highcharts]="Highcharts"
+                [options]="pieChartOptions"
+              
+                style="width: 100%; height: 300px; display: block;"
+              ></highcharts-chart>
+
+                </mat-card-content>
+                </mat-card>
+
+
+    </div>
+
+    <div class="col-6">
+        <mat-card class="mat-elevation-z5">
+            <mat-card-header>
+                <mat-card-title>Country Analysis</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <highcharts-chart 
+                [Highcharts]="Highcharts"
+                [options]="barChartOptions"
+              
+                style="width: 100%; height: 300px; display: block;"
+              ></highcharts-chart>
+                <!-- <table mat-table [dataSource]="dataSource"  >  
                     <ng-container matColumnDef="id">
                       <th mat-header-cell *matHeaderCellDef> No. </th>
                       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -111,10 +135,31 @@
                  
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                  </table>
+                  </table> -->
             </mat-card-content>
         
         </mat-card>
      
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-6">
+        <mat-card class="mat-elevation-z5">
+            <mat-card-header>
+                <mat-card-title>Country Analysis</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <highcharts-chart 
+                [Highcharts]="Highcharts"
+                [options]="lineChartOptions"
+              
+                style="width: 100%; height: 300px; display: block;"
+              ></highcharts-chart>
+            
+            </mat-card-content>
+        
+        </mat-card>
     </div>
 </div>
