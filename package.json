@@ -28,6 +28,7 @@
     "highcharts": "^8.2.0",
     "highcharts-angular": "^2.8.0",
     "jquery": "3.5.0",
+    "lodash-es": "^4.17.15",
     "ngx-avatar": "^4.0.0",
     "ngx-countdown": "^10.0.0",
     "ngx-skeleton-loader": "^2.2.1",

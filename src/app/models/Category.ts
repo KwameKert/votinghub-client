@@ -3,5 +3,6 @@ export class Category {
     name: string;
     stat: string;
     createdAt: Date;
+    positions: Array<Position>
     description: string
 }

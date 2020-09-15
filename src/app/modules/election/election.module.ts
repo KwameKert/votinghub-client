@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { AddElectionComponent,  EditElectionComponent, ViewElectionComponent, ListElectionComponent} from './index';
 import {SharedModule} from '../shared/shared.module';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ElectionResultsComponent } from './component/election-results/election-results.component';
 
 
 @NgModule({
-  declarations: [AddElectionComponent, EditElectionComponent, ViewElectionComponent, ListElectionComponent, DashboardComponent],
+  declarations: [AddElectionComponent, EditElectionComponent, ViewElectionComponent, ListElectionComponent, DashboardComponent, ElectionResultsComponent],
   imports: [
     CommonModule,
     SharedModule
   ],
-  exports:  [AddElectionComponent, EditElectionComponent, ViewElectionComponent, ListElectionComponent]
+  exports:  [AddElectionComponent, EditElectionComponent, ViewElectionComponent, ListElectionComponent, ElectionResultsComponent]
 })
 export class ElectionModule { }

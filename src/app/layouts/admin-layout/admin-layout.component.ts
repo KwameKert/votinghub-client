@@ -18,6 +18,7 @@ export class AdminLayoutComponent implements OnInit {
     {name: 'Users', url: 'user/list', icon: 'supervised_user_circle'},
     {name: 'Man', url: 'voter/list', icon: 'fingerprint'},
     {name: 'Stud', url: 'student/list', icon: 'face'},
+    {name: 'Results', url: 'election-results', icon: 'assessment'},
   ]
     
 
