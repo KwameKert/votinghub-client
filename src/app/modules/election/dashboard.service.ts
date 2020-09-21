@@ -23,7 +23,7 @@ export class DashboardService {
   //   return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/generateResults/${id}`);
   // }
   public fetchResults(id: number):  Observable<ApiResponse<any>> {
-    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/result/position/${id}`);
+    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/result/category/${id}`);
   }
 
 

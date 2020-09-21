@@ -21,7 +21,9 @@
                   <div *ngFor="let position of srcCategory">
                     <mat-step >
                       <ng-template matStepLabel>{{ position.name}}</ng-template>
-                      <h3 class="text-center">{{ position.name}}</h3>
+                      <h3 class="text-center mb-2">{{ position.name}} | {{position.cat_name}}</h3>
+                      <br>
+                      <hr/>
                       <div class="row justify-content-center">
                        
                         <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let candidate of position.candidates">
@@ -62,9 +64,9 @@
 
                       <button mat-raised-button matStepperPrevious color="accent" class="mr-3" *ngIf="position != srcCategory[0]">Back</button>
                       <button mat-raised-button matStepperNext  color="primary" *ngIf="position != srcCategory[srcCategory.length -1]">Next</button>
-                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1] && facultyCategory.length != 0"  (click)="viewResults(false,  'facultyStepper')">Continue</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1] && facultyCategory.length != 0 "  (click)="viewResults(false,  'facultyStepper')">Continue</button>
                       <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="  position == srcCategory[srcCategory.length -1]  && facultyCategory.length == 0 && internationalCategory.length == 0 " (click)="viewResults(true, 'none')">Submit</button>
-                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1] && internationalCategory.length != 0" (click)="viewResults(false, 'internationalStepper')">International</button>
+                      <button mat-raised-button matStepperPrevious color="primary" class="mr-3" *ngIf="position == srcCategory[srcCategory.length -1] && internationalCategory.length != 0 && facultyCategory.length == 0 "(click)="viewResults(false, 'internationalStepper')">International</button>
                     </div>
                     </mat-step>
                   </div>

@@ -58,6 +58,7 @@ export class FetchCandidatesComponent implements OnInit {
     console.log(this.token)
     this.fetchCandidates();
    this.loadForm();
+
   }
 
   loadForm(){
@@ -78,25 +79,17 @@ export class FetchCandidatesComponent implements OnInit {
   fetchCandidates(){
 
     this.isLoading = true;
-    
- 
     this._voterService.fetchCandidates(this.token, this.code).subscribe(result=>{
-
       if(result.status == 302){
-
         this._router.navigate(["htau/success"])
       }else if(result.status == 417){
-
         this._router.navigate(["htau/error"])
       }
       else{
-
         let nomineeList = result.data;
-       
         this.srcCategory = nomineeList.filter((nominee)=>{
           return nominee.cat_name == "SRC"
         })
-
         this.facultyCategory = nomineeList.filter((nominee)=>{
           if(nominee.cat_name == "BSA" ||  nominee.cat_name == "ESA" ||nominee.cat_name == "ACS" ){
             return nominee;
@@ -114,6 +107,9 @@ export class FetchCandidatesComponent implements OnInit {
         console.log("src", this.srcCategory);
         console.log("isa", this.internationalCategory);
         console.log("faculty", this.facultyCategory);
+        if(sessionStorage.getItem("next")){
+          this.switchForms(sessionStorage.getItem("next"));
+        }
       }
 
     }, error=>{
@@ -126,32 +122,32 @@ export class FetchCandidatesComponent implements OnInit {
   addCandidate(position: Position, candidate: Candidate){
       this.candidatesName[position.name] = candidate.name;
       this.candidatesId[position.name] = candidate.id;
-      console.log(this.candidatesName)
+    
   }
 
   submitResults(){
 
     this.isLoading = true;
     let candidateArray: Array<number> = [];
-
+    // let selectedCadidates = JSON.parse(sessionStorage.getItem("candidates"))
     for(let candidate in this.selectedCadidates){
       candidateArray.push(this.selectedCadidates[candidate])
     }
+
+    console.log(candidateArray)
 
     this.voteForm.patchValue({
       token: this.token,
       candidates: candidateArray
     })
 
-   
-    console.log(this.voteForm.value)
-
     this._voterService.castVote(this.voteForm.value).subscribe(result=>{
-      console.log(result.data);
-
       this._toastr.success("Vote casted  😊 ","",{
           timeOut:2000
         })
+
+        sessionStorage.removeItem('candidates');
+        sessionStorage.removeItem('next');
       //this._router.navigate(["htau"])
       this._router.navigate(["htau/success"])
       
@@ -167,7 +163,7 @@ export class FetchCandidatesComponent implements OnInit {
   viewResults(persistData: boolean,  toStepper: string){
     const dialogRef = this.dialog.open(ViewResultsComponent, {
       width: '600px',
-      height: '400px',
+      height: '500px',
       data: this.candidatesName
     });
 
@@ -175,13 +171,27 @@ export class FetchCandidatesComponent implements OnInit {
 
       console.log(toStepper)
       if(result){
+
         if(persistData){
+          if(sessionStorage.getItem('candidates')){
+            this.selectedCadidates = {...this.candidatesId, ...JSON.parse(sessionStorage.getItem("candidates"))}
+          }else{
           this.selectedCadidates = {...this.candidatesId}
+          }
+          
+          sessionStorage.setItem('candidates', this.selectedCadidates);
+          sessionStorage.setItem('next', toStepper);
+          console.log("submitting the selected candidates " ,this.selectedCadidates)
           this.submitResults();
         }else{
           this.selectedCadidates = {...this.candidatesId}
           this.candidatesName = {};
           this.switchForms(toStepper)
+          sessionStorage.setItem('candidates', JSON.stringify(this.selectedCadidates));
+          sessionStorage.setItem('next', toStepper);
+          // console.log("adding " , sessionStorage.getItem('next'),JSON.parse(sessionStorage.getItem('candidates')));
+          console.log("adding selected candidates " ,this.selectedCadidates)
+          
         }
       }
       

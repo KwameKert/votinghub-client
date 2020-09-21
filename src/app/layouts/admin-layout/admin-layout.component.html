@@ -2,34 +2,8 @@
 <app-header class="header" (toggleSidebarForMe)="toggleSidebar()"></app-header>
 <mat-drawer-container >
     <mat-drawer mode="side" [opened]="sideBarOpen" >
-        
-        <mat-nav-list>
-            <div class="row " >
-                <div class="col-md-6 "  style="margin-left: 70px">
-                    <img src="assets/images/blue.jpg" alt="skuulba admin" class="rounded-circle" width="100px" height="100px" >
-                    <b class="text-bold ml-1">Administrator</b>
-                </div>
-                
-            </div>
-            <br>
-            <mat-divider></mat-divider>
-            <div class="text-center">
-        
-                <div *ngFor="let link of links">
-        
-                    <a  mat-list-item  routerLinkActive="is-active" [routerLink]="[link.url]"  >  <mat-icon class="sidebar-icon">{{link.icon}}</mat-icon  > {{ link.name | titlecase}}</a>
-
-                        <mat-divider></mat-divider>
-        
-                </div>
-        
-            </div>
-        
-        
-        <mat-divider></mat-divider>
-            
-        
-        </mat-nav-list>
+        <app-sidebar></app-sidebar>
+      
         
     </mat-drawer>
 

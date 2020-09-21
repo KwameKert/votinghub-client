@@ -55,8 +55,8 @@ export class VoterService {
    }
 
 
-  fetchVoter(token: string): Observable<ApiResponse<any>>{
-    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/check/${token}`);
+  fetchVoter(token: string){
+    return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/voter/check/${token}`).toPromise();
    }
 
    

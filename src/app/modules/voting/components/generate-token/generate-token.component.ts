@@ -43,10 +43,6 @@ export class GenerateTokenComponent implements OnInit {
     this.loadTokenForm();
   }
 
-
-
-
- 
   loadTokenForm(){
     this.tokenForm = new FormGroup({
       verificationCode: new FormControl("", [Validators.maxLength(10),Validators.required, Validators.pattern("^[a-zA-Z0-9]*$")])
@@ -54,32 +50,59 @@ export class GenerateTokenComponent implements OnInit {
   }
 
 
-
-  fetchVoter(){
+  async fetchVoter(){
     
-   //this.isLoading = true;
-    this.ngxService.start();
-    this._voterService.fetchVoter(this.token).subscribe(result=>{
-      let fullNumber = result.data.phone
-      let fullEmail = result.data.email
-      this.phoneNumber = fullNumber.substring(0, 4) + "****" + fullNumber.substring(8);
-      this.emailAccount = fullEmail.substring(0,4) + "******" + fullEmail.substring(8);
-      // this.phoneNumber  = result.data.phone;
-      // this.emailAccount = result.data.email;
-      this.uuid = result.data.token;
-      if(result.status == 302){
-
-        this._router.navigate(["htau/success"])
-      }else if(result.status == 417){
-
-        this._router.navigate(["htau/error"])
-      }
-
-    }, error=>{
+    try{
+      this.ngxService.start();
+        let resObj = await this._voterService.fetchVoter(this.token);
+        if(resObj){
+          let fullNumber = resObj.data.phone
+          let fullEmail = resObj.data.email
+          this.phoneNumber = fullNumber.substring(0, 4) + "****" + fullNumber.substring(8);
+          this.emailAccount = fullEmail.substring(0,4) + "******" + fullEmail.substring(8);
+          this.uuid = resObj.data.token;
+          if(resObj.status === 302){
+            return this._router.navigate(["htau/success"])
+          }else if(resObj.status === 417){
+            console.log("error here")
+            return this._router.navigate(["htau/error"])
+          }
+          
+        }else{
+          console.log("error here")
+          // return this._router.navigate(["htau/error"])
+        }
+        
+       
+    }catch(error){
       console.error(error)
-    }).add(()=>{
+    }finally{
       this.ngxService.stop();
-    })
+    }
+   //this.isLoading = true;
+   // this.ngxService.start();
+
+  //  .subscribe(result=>{
+  //     let fullNumber = result.data.phone
+  //     let fullEmail = result.data.email
+  //     this.phoneNumber = fullNumber.substring(0, 4) + "****" + fullNumber.substring(8);
+  //     this.emailAccount = fullEmail.substring(0,4) + "******" + fullEmail.substring(8);
+  //     // this.phoneNumber  = result.data.phone;
+  //     // this.emailAccount = result.data.email;
+  //     this.ngxService.stop();
+  //     this.uuid = result.data.token;
+  //     if(result.status === 302){
+  //       return this._router.navigate(["htau/success"])
+  //     }else if(result.status === 417){
+  //       console.log("error here")
+  //       return this._router.navigate(["htau/error"])
+  //     }
+
+  //   }, error=>{
+  //     console.error(error)
+  //   }).add(()=>{
+      
+  //   })
 
   }
 

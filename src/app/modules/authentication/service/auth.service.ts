@@ -35,6 +35,7 @@ export class AuthService {
   }
 
   login(data: object) {
+    console.log(this._baseUrl)
     return this._httpClient.post<ApiResponse<User>>(`${this._baseUrl}/auth/login`, data)
         .pipe(map(data => {
          

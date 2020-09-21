@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_host : "https://electionhub-api.herokuapp.com/api/v1"
+  api_host : "https://election-proxy.herokuapp.com/api/v1"
 };

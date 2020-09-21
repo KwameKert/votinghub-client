@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  api_host : "http://localhost:8080/api/v1"
+  //api_host : "http://localhost:3300/api/v1"
+ //api_host : "http://localhost:8080/api/v1"
+  api_host : "https://election-proxy.herokuapp.com/api/v1"
 };
 
 /*
