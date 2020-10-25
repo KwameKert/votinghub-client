@@ -1,0 +1,53 @@
+<mat-card class="mat-elevation-z8">
+
+    <mat-card-header>
+        <mat-card-title>Live Vote</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="row justify-content-center">
+            <div class="col-7 ">
+                <img src="/assets/images/banner.jpeg" class="img-fluid" alt="" style="height:450px; width: 100%;">
+            </div>
+              
+                <div class="col-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="lead">Total Votes </p>
+                            <h3 class="display-4 text-center">{{votes}}</h3>
+                        </div>
+                    </div>
+
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <p class="lead">Status </p>
+                            <div class="text-center">
+                                <div  *ngIf="status == 'active'">
+                                    <mat-icon class="float-left">wifi_tethering</mat-icon>
+                                    <h3 class="display-4 text-center" style="color: green"  >
+                                        Ongoing</h3>
+                                </div>
+                                <div *ngIf="status != 'active'">
+                                    <mat-icon class="float-left" style="color:red">power_off</mat-icon>
+                                    <h3 class="display-4 text-center" style="color: red" >
+                                        Ended</h3>
+                                </div>
+                              
+                               
+                            
+                            </div>
+                           
+                        <!-- <span *ngIf="status == 'active'" class="badge badge-success"> Active </span> -->
+                        </div>
+                    </div>
+
+                       
+                </div>
+              
+                   
+
+        </div>
+        
+    </mat-card-content>
+
+

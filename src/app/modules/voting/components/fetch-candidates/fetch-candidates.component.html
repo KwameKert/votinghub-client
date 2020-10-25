@@ -21,12 +21,11 @@
                   <div *ngFor="let position of srcCategory">
                     <mat-step >
                       <ng-template matStepLabel>{{ position.name}}</ng-template>
-                      <h3 class="text-center mb-2">{{ position.name}} | {{position.cat_name}}</h3>
-                      <br>
+                      <h3 class="text-center">{{ position.name}} | {{position.cat_name}}</h3>
                       <hr/>
                       <div class="row justify-content-center">
                        
-                        <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let candidate of position.candidates">
+                        <div class="col-md-3 col-lg-3 col-sm-4" *ngFor="let candidate of position.candidates">
                           <fieldset id="{{position.name}}">
                           <label>
                             <input type="radio" name="{{position.name}}" class="card-input-element" (click)="addCandidate(position, candidate)" />
@@ -44,7 +43,7 @@
                           
                         </div>
 
-                        <div class="col-md-4 col-lg-4 col-sm-4">
+                        <div class="col-md-3 col-lg-3 col-sm-4">
                            
                           <label>
                             <input type="radio" name="{{position.name}}" class="card-input-element"  />
@@ -79,7 +78,7 @@
                         <h3 class="text-center">{{ position.name}}</h3>
                         <div class="row justify-content-center">
                          
-                          <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let candidate of position.candidates">
+                          <div class="col-md-3 col-lg-3  col-sm-4" *ngFor="let candidate of position.candidates">
                             <fieldset id="{{position.name}}">
                             <label>
                               <input type="radio" name="{{position.name}}" class="card-input-element" (click)="addCandidate(position, candidate)" />
@@ -99,7 +98,7 @@
                             
                           </div>
 
-                          <div class="col-md-4 col-lg-4 col-sm-4">
+                          <div class="col-md-3 col-lg-3  col-sm-4">
                            
                             <label>
                               <input type="radio" name="{{position.name}}" class="card-input-element"  />

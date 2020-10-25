@@ -4,3 +4,4 @@ export * from './component/list-election/list-election.component';
 export * from './component/view-election/view-election.component';
 export * from './component/dashboard/dashboard.component';
 export * from './component/election-results/election-results.component';
+export * from './component/live-result/live-result.component';

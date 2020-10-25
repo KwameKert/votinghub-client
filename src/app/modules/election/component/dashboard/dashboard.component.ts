@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../dashboard.service';
 import * as Highcharts from 'highcharts';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   lineChartOptions: object;
   
-  constructor(private _dashboardService: DashboardService) { }
+  constructor(private _dashboardService: DashboardService, private  ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
     this.fetchComponents();
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
   
   fetchComponents(){
+      this.ngxService.start();
     this._dashboardService.fetchComponents().subscribe(result=>{
 
         this.candidates = result.data.candidates;
@@ -41,6 +43,8 @@ export class DashboardComponent implements OnInit {
 
     },error=>{
       console.error(error)
+    }).add(()=>{
+        this.ngxService.stop();
     })
   }
 

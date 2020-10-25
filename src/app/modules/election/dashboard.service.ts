@@ -26,6 +26,13 @@ export class DashboardService {
     return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/result/category/${id}`);
   }
 
+  public fetchLiveData() {
+   
+      return this._httpClient.get<ApiResponse<any>>(`${this._baseUrl}/result/liveVotes`);
+  
+    
+  }
+
 
 
 }

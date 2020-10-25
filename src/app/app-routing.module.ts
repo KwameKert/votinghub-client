@@ -22,6 +22,13 @@ const routes: Routes= [
   loadChildren: () => import('./modules/admin/admin.module')
                      .then(m => m.AdminModule)
 },
+{
+  path:'ec', 
+  canActivate: [AuthGuard],
+  component: DefaultComponent,
+  loadChildren: () => import('./modules/commissioner/commissioner.module')
+                     .then(m => m.CommissionerModule)
+},
 
 {
   path:'htau', 

@@ -5,6 +5,7 @@ import * as Highcharts from 'highcharts';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Category } from 'src/app/models/Category';
 import { Position } from 'src/app/models/Position';
+import { ToastrService } from 'ngx-toastr';
 
 export interface PositionResult{
   id: number;
@@ -32,7 +33,7 @@ export class ElectionResultsComponent implements OnInit {
   positions: any;
   resultList: any = [];
 
-  constructor(private _crudService: CrudService, private _dashboardService: DashboardService,  private ngxService: NgxUiLoaderService) { }
+  constructor(private _crudService: CrudService, private _dashboardService: DashboardService,  private ngxService: NgxUiLoaderService, private _toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.fetchCategories();
@@ -61,7 +62,9 @@ export class ElectionResultsComponent implements OnInit {
     this._dashboardService.fetchResults(this.category.id).subscribe((data)=>{
       this.resultList = [];
       this.results = data.data;
-        
+      if(data.status == 400){
+        this._toastrService.info("Kindly end elections to view results","Oops")
+      }
       for(let item of this.results){
         this.positionData = item.candidateResultList
         let series = [];

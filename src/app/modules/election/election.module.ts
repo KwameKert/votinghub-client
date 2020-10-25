@@ -4,10 +4,11 @@ import { AddElectionComponent,  EditElectionComponent, ViewElectionComponent, Li
 import {SharedModule} from '../shared/shared.module';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ElectionResultsComponent } from './component/election-results/election-results.component';
+import { LiveResultComponent } from './component/live-result/live-result.component';
 
 
 @NgModule({
-  declarations: [AddElectionComponent, EditElectionComponent, ViewElectionComponent, ListElectionComponent, DashboardComponent, ElectionResultsComponent],
+  declarations: [AddElectionComponent, EditElectionComponent, ViewElectionComponent, ListElectionComponent, DashboardComponent, ElectionResultsComponent, LiveResultComponent],
   imports: [
     CommonModule,
     SharedModule

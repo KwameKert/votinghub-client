@@ -2,7 +2,7 @@
     
     <div class="text-center">
 
-        <div *ngFor="let link of links">
+        <div *ngFor="let link of data">
 
             <a  mat-list-item  routerLinkActive="is-active" [routerLink]="[link.url]"  >  <mat-icon class="sidebar-icon">{{link.icon}}</mat-icon  > {{ link.name | titlecase}}</a>
 

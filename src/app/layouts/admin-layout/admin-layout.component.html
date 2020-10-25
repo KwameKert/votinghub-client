@@ -2,7 +2,7 @@
 <app-header class="header" (toggleSidebarForMe)="toggleSidebar()"></app-header>
 <mat-drawer-container >
     <mat-drawer mode="side" [opened]="sideBarOpen" >
-        <app-sidebar></app-sidebar>
+        <app-sidebar [data]="links"></app-sidebar>
       
         
     </mat-drawer>

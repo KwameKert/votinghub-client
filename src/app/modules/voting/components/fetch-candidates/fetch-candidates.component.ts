@@ -184,7 +184,11 @@ export class FetchCandidatesComponent implements OnInit {
           console.log("submitting the selected candidates " ,this.selectedCadidates)
           this.submitResults();
         }else{
+          if(sessionStorage.getItem('candidates')){
+            this.selectedCadidates = {...this.candidatesId, ...JSON.parse(sessionStorage.getItem("candidates"))}
+          }else{
           this.selectedCadidates = {...this.candidatesId}
+          }
           this.candidatesName = {};
           this.switchForms(toStepper)
           sessionStorage.setItem('candidates', JSON.stringify(this.selectedCadidates));

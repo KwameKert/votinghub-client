@@ -9,12 +9,15 @@
   } 
   
   html, body {
-    height: 100%;
-    margin: 0;
+    //height: 130%;
+    //margin: 0;
     overflow-x: hidden;
-    padding:0;
+   // padding:0;
   }
   
+  .holder{
+    margin-bottom: 300px;
+  }
   ::ng-deep.mat-form-field-underline {
     /*change color of underline*/
     background-color: black !important;
@@ -55,7 +58,11 @@
  }
   
 
-.img-thumbnail{
-  width: 500px;
-  height: 200px;
+
+
+@media only screen and (max-width: 600px) {
+  .img-thumbnail{
+    width: 500px;
+    height: 200px;
+  }
 }

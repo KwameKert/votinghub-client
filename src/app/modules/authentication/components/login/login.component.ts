@@ -35,8 +35,8 @@ loginUser(){
             case "ADMIN":
               return this._router.navigate(['/admin/user/list']);
               break;
-            case "COLLECTOR":
-                this.link = '/collector/dashboard';
+            case "EC":
+              return this._router.navigate(['/ec/election/list']);
                 break;
             case "AUDITOR":
                 this.link = '/auditor/dashboard';    
